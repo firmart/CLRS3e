@@ -7,6 +7,12 @@
 \usepackage[nofligatures,frenchstyle,narrowiints,partialup,oldstyle]{kpfonts} 
 
 
+%%%%% Colors %%%%%
+
+\usepackage{xcolor} 
+\definecolor{myblue}{RGB}{0,0,127} % navy blue
+\colorlet{myred}{red!50!black} 
+
 %%% tools %%%
 
 \usepackage{xintexpr} % computation
@@ -29,8 +35,9 @@
 \usepackage{amssymb}
 \usepackage{stmaryrd} % for llbracket
 
-%%% Algorithm packages %%%
+%%% Code highlight and Algorithm packages %%%
 
+\usepackage{minted}
 \usepackage{clrscode3e}
 
 % ---  make codebox referable  ---
@@ -44,10 +51,17 @@
   \phantomsection}
 \makeatother
 
+\usepackage{newverbs} % customized inline verb 
+
+\newverbcommand{\cverb}{\color{myred}}{}
+
 %%% Typography packages %%%
 
-\usepackage{enumitem} % customize enum
+\usepackage{soulutf8} % for linebreak support underline
+\usepackage{setspace}
+\onehalfspacing
 
+\usepackage{enumitem} % customize enum
 % --- customized list ---
 
 \newlist{Al}{enumerate}{1}
@@ -62,7 +76,7 @@
 \usepackage[all]{hypcap} % for going to the top of an image when a figure reference is clicked. Placed after hyperref.
 \hypersetup{
     colorlinks,
-    linkcolor={red!50!black},
+    linkcolor={myred},
     citecolor={blue!50!black}, 
     urlcolor={blue!80!black}
 }
@@ -71,16 +85,6 @@
 %%%%% Table %%%%%
 
 \usepackage{array}
-
-%%%%% Colors %%%%%
-
-\usepackage{xcolor} 
-\definecolor{myblue}{RGB}{0,0,127}
-
-\usepackage{soulutf8} % for linebreak support underline
-
-\usepackage{setspace}
-\onehalfspacing
 
 %%% Diagrams %%%
 

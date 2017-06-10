@@ -52,13 +52,3 @@ int recFindMaxSubarray(int* arr, int* low, int* high){
 	}
 }
 
-/*
-
-int main(int argc, char** argv){
-	int arr[16] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}; //CLRS's example
-	int Left = 0, Right = 15, sum;
-	sum = findMaxSubarray(arr, &Left, &Right);
-	printf("%d [%d, %d]\n", sum, Left + 1, Right + 1);
-	return 0;
-}
-*/

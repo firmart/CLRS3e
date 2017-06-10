@@ -25,12 +25,3 @@ int bruteFindMaxSubarray(int* arr, int* low, int* high){
 }
 
 
-/*
-int main(int argc, char** argv){
-	int arr[16] = {13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -5, -22, 15, -4, 7}; //CLRS's example
-	int sum, low = 0, high = 15;
-	sum = bruteFindMaxSubarray(arr, &low, &high);
-	printf("maxsubarray = [%d, %d], sum = %d\n", low + 1, high + 1, sum);  
-	return 0;
-}
-*/

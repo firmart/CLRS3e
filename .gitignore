@@ -175,6 +175,7 @@ acs-*.bib
 
 # listings
 *.lol
+*.toa
 
 # makeidx
 *.idx
