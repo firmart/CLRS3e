@@ -1,0 +1,233 @@
+%%% Basic packages %%%
+
+\documentclass[12pt,a4paper]{article} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[nofligatures,frenchstyle,narrowiints,partialup,oldstyle]{kpfonts} 
+
+
+%%% tools %%%
+
+\usepackage{xintexpr} % computation
+\usepackage{etoolbox}
+\usepackage{totcount} % display counter value anywhere
+\usepackage{tocloft} % customize own 'listofxxx'
+
+% --- liste d'algorithmes ---
+\newcommand{\listalgoname}{\Large Liste des Algorithmes}
+\newlistof{algo}{toa}{\listalgoname}
+\newcommand{\algo}[1]{%
+  \refstepcounter{algo}
+  \textbf{Algorithme \thealgo.}\quad\textsc{#1}
+  \addcontentsline{toa}{algo}{\protect\numberline{\thesubsection.\thealgo}\quad #1}}
+
+
+%%% Maths symbols packages %%%
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd} % for llbracket
+
+%%% Algorithm packages %%%
+
+\usepackage{clrscode3e}
+
+% ---  make codebox referable  ---
+
+\robustify{\proc}
+\makeatletter
+\renewcommand{\Procname}[1]{%
+  \global\def\saveprocname{#1}%
+  \global\procnametrue%
+  \let\@currentlabelname\saveprocname
+  \phantomsection}
+\makeatother
+
+%%% Typography packages %%%
+
+\usepackage{enumitem} % customize enum
+
+% --- customized list ---
+
+\newlist{Al}{enumerate}{1}
+\setlist[Al]{label={\bfseries\alph*.}}
+
+\usepackage{adjustbox} % adjust objects 
+%\usepackage{imakeidx} % for index
+%\usepackage[xindy,nopostdot,acronym]{glossaries}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{float} % for figure's option H
+\usepackage{hyperref}
+\usepackage[all]{hypcap} % for going to the top of an image when a figure reference is clicked. Placed after hyperref.
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black}, 
+    urlcolor={blue!80!black}
+}
+\usepackage{graphicx} % for going to include figure
+
+%%%%% Table %%%%%
+
+\usepackage{array}
+
+%%%%% Colors %%%%%
+
+\usepackage{xcolor} 
+\definecolor{myblue}{RGB}{0,0,127}
+
+\usepackage{soulutf8} % for linebreak support underline
+
+\usepackage{setspace}
+\onehalfspacing
+
+%%% Diagrams %%%
+
+\usepackage[linecolor = myblue , tickscolor = orange , emptycolor =
+yellow , filledcolor = myblue]{progressbar} 
+
+%%% Symbols Macro %%%
+
+% \usepackage{pifont}% http://ctan.org/pkg/pifont
+
+% \etc
+\makeatletter
+\DeclareRobustCommand{\etc}{%
+    \@ifnextchar{.}%
+        {etc}%
+        {etc.\@\xspace}%
+}
+\makeatother
+
+% \cmark, \xmark
+%\newcommand{\cmark}{\ding{51}}
+%\newcommand{\xmark}{\ding{55}}
+
+%%%%% Illustration %%%%%
+
+%\usepackage{tikz}
+%	\usetikzlibrary{calc}
+%	\usetikzlibrary{shapes.geometric}
+%	\usetikzlibrary{arrows.meta}
+
+%%%% Glossary %%%%
+
+%\setglossarystyle{altlistgroup}
+%\setglossarystyle{altlisthypergroup}
+
+
+% \makeatletter
+% \newglossarystyle{mylist}{%/
+% \setglossarystyle{altlist}% base this style on the altlistgroup style
+% \renewcommand*{\glossentry}[2]{%
+% \item[\glsentryitem{##1}
+% \glstarget{##1}{\glossentryname{##1}}]%
+% \mbox{}\par\nobreak\@afterheading
+% \glossentrydesc{##1}\glspostdescription\space \glsseelist{gls-##1}~p.~##2~}%
+% }
+% \makeatother
+
+
+% #1:label
+% #2:short
+% #3:long
+% #4:description
+
+% \DeclareDocumentCommand{\newdualentry}{ m m m m } {
+%   \newglossaryentry{gls-#1}{
+%     name={#3},
+%     description={#4},
+%   }
+%   \newglossaryentry{#1}{
+% 	type=\acronymtype, 
+% 	name={#2}, 
+% 	description={}, 
+% 	first={#3 (#2)\glsadd{gls-#1}}, 
+% 	%see={[Glossaire :]gls-#1}
+%   }
+% }
+
+% \renewcommand{\glstextformat}[1]{\textit{#1}}
+
+%\makeindex
+%\makeglossaries
+%\input{glossary.tex}
+
+%%%%% Contents %%%%%
+
+  \let\oldsection\section% Store \section in \oldsection
+  \renewcommand{\section}{\clearpage\oldsection}% Insert \clearpage before every \section
+
+  \newenvironment{ex}{\refstepcounter{ex}\paragraph{\textcolor{myblue}{Solution :}}}{\hfill$\blacksquare$}
+  \newenvironment{exrev}{\refstepcounter{exrev}\paragraph{\textcolor{red}{Solution :}}}{\hfill$\blacksquare$}
+  \newenvironment{pb}{\refstepcounter{pb}\paragraph{Solution :}}{\hfill$\blacksquare$}
+  \newenvironment{pbrev}{\refstepcounter{pbrev}\paragraph{\textcolor{red}{Solution :}}}{\hfill$\blacksquare$}
+
+%%% Maths new command %%%
+  
+\newcommand*\diff{\mathop{}\!\mathrm{d}}
+\newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
+\newcommand{\N}{\mathbb{N}}
+
+\begin{document}
+
+\newtotcounter{ex}
+\newtotcounter{pb}
+\newtotcounter{exrev}
+\newtotcounter{pbrev}
+
+\thispagestyle{empty} % Remove page numbers
+\input{cover}
+\clearpage
+\pagenumbering{roman}
+\setcounter{tocdepth}{3}
+\tableofcontents
+%\clearpage
+%\listoffigures
+\clearpage
+\listofalgo
+\addcontentsline{toc}{section}{Liste des Algorithmes}
+
+\clearpage
+\pagenumbering{arabic}
+
+%-----------------------------
+%   Contenu
+%-----------------------------
+
+
+\input{1}
+\input{2}
+\input{3}
+\input{4}
+\appendix
+
+\input{A}
+
+
+% \setglossarystyle{mylist}
+
+%  \clearpage
+%  \phantomsection
+%  \addcontentsline{toc}{section}{Acronymes}
+%  \printglossary[type=\acronymtype]
+
+% \clearpage
+% \phantomsection
+% \addcontentsline{toc}{section}{Glossaire}
+% \printglossary[type=main]
+
+% \clearpage
+% \phantomsection
+% \addcontentsline{toc}{section}{Index}
+% \printindex
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Références}
+\bibliographystyle{plain}
+\bibliography{main.bib}
+\nocite{*}
+
+\end{document}

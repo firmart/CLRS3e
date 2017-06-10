@@ -1,0 +1,117 @@
+\section{Summation}
+
+R\'ef\'erences : \cite{uic_hw1}
+
+\subsection{Summation formulas and propreties}
+
+\begin{description}
+  \item [A.1-1] {\itshape Find a simple formula for $\sum_{k=1}^n(2k-1)$ }
+   \begin{ex}
+  \begin{align*}
+    \sum_{k=1}^n(2k-1)  & = n(n+1)-n\\
+    &= n^2.
+  \end{align*}
+\end{ex}
+\item[A.1-2 $\star$]  {\itshape Show that $\sum_{k=1}^n1/(2k-1) = \ln (\sqrt{n}) + O(1)$ by manipulating the harmonic series.}
+    \begin{ex}
+      \begin{align*}
+        \sum_{k=1}^n \frac{1}{2k-1} &= H_n - \frac{1}{2}\sum_{k=1}^n\frac{1}{k}\\
+       &= \frac{1}{2}H_n\\
+       &= \ln(\sqrt{n}) + O(1).
+      \end{align*}
+    \end{ex}
+  \item[A.1-3] {\itshape Show that $\sum_{k=0}^{\infty} k^2x^k = x(1+x)/(1-x)^3$ for $ 0 < |x| < 1$.}
+    \begin{ex}
+    \begin{align*}
+  \sum_{k=0}^\infty k^2x^k & = x \left( \frac{x}{(1-x)^2} \right)^\prime\\
+      &= \frac{x}{(1-x)^2}+\frac{2x}{(1-x)^3}\\
+      &= \frac{x(1+x)}{(1-x)^3}.
+    \end{align*}
+  \end{ex}
+\item[A.1-4 $\star$] {\itshape Show that $\sum^\infty_{k=0}(k-1)/2^k = 0$.}
+    \begin{ex}
+    Soit $S=\sum_{k=0}^\infty\frac{k-1}{2^k}$. Alors $2S = \sum_{k=0}^{\infty}\frac{k-1}{2^{k-1}}= -2 + \sum_{k=0}^\infty\frac{k}{2^k}$. Donc 
+    \begin{align*}
+      2S-S &= -2 + \sum_{k=0}^\infty\frac{1}{2^k}\\
+      &= 0.
+     \end{align*}
+   \end{ex}
+ \item[A.1-5 $\star$] {\itshape Evaluate the sum $\sum_{k=1}^\infty(2k+1)x^{2k}$ for $|x| < 1$.}
+   \begin{ex}
+    \begin{align*}
+      \sum_{k=1}^{\infty}(2k+1)x^{2k} &= \left(\sum_{k=1}^\infty x^{2k+1}\right)^\prime\\
+    &= \left(\frac{x}{1-x^2} - x\right)^\prime\\
+      &= \frac{3x^2}{1-x^2} + \frac{2x^4}{(1-x^2)^2}
+    \end{align*}
+  \end{ex}
+  \item[A.1-6] {\itshape  Prove that $\sum_{k=1}^nO(f_k(i)) = O\left(\sum_{k=1}^n f_k(i)\right)$ by using the linearity proprety of summations.}
+    \begin{ex}
+    Soit pour tout $k \in \llbracket 1, n \rrbracket, g_k \in O(f_k)$, autrement dit $g_k \le c_kf_k$ est v\'erifi\'e \`a partir d'un rang $N_k$ avec $c_k > 0$. On a donc $\sum_{k=1}^n g_k \le \sum_{k=1}^ncf_k$ v\'erifi\'e \`a partir d'un rang $N = \max(N_1, \ldots,N_n)$ et $c = \max(c_1, \ldots,c_n)$ . D'o\`u $\sum_{k=1}^n g_k \in O(\sum_{k=1}^n f_k)$.
+  \end{ex}
+\item[A.1-7] {\itshape Evaluate the product $\prod_{k=1}^n2\cdot 4^k$.}
+    \begin{ex}
+  Soit $P=\prod_{k=1}^n2\cdot4^k = \prod_{k=1}^n2^{2k+1}$. On a 
+  \begin{align*}
+    \lg P &= \sum_{k=1}^n2k+1\\
+    &= n(n+2)
+  \end{align*}
+
+  Finalement, $P = 2^{n(n+2)}$.
+    \end{ex}
+  \item[A.1-8 $\star$] {\itshape Evaluate the product $\prod_{k=2}^n(1-1/k^2)$.}
+    \begin{ex}
+  \begin{align*}
+    \prod_{k=2}^n(1-\frac{1}{k^2}) &= \prod_{k=2}^n \frac{k-1}{k}\cdot\frac{k+1}{k}\\
+      &= \frac{1}{2}\cdot\frac{n+1}{n}\\
+      &= \frac{n+1}{2n}.
+  \end{align*}
+    \end{ex}
+\end{description}
+
+  \subsection{Bounding summations}
+
+  \begin{description}
+    \item[A.2-1] {\itshape Show that $\sum_{k=1}^n 1/k^2$ is bounded above by a constant.}
+      \begin{ex}
+      \begin{align*}
+        \sum_{k=1}^n\frac{1}{k^2} &= 1 + \sum_{k=2}^n\frac{1}{k^2}\\
+        &\le 1 + \int_1^n\frac{1}{x^2}\diff x\\
+        &= 1 + (1-\frac{1}{n})\\
+        &= 2 - \frac{1}{n}\\
+        &\le 2.
+      \end{align*}
+    \end{ex}
+    \item[A.2-2]{\itshape Find an asymptotic upper bound on the summation $\sum\limits_{k=0}^{\lfloor \lg n \rfloor}\lceil n/2^k \rceil$.}
+
+    \item[A.2-3] {\itshape Show that the $n$th harmonic number is $\Omega(\lg n)$ by splitting the summation.}
+
+    \item[A.2-4]{\itshape Approximate $\sum_{k=1}^nk^3$ with an integral.}
+        \begin{ex}
+      On a
+      $$\int_0^nx^3\diff x \le \sum_{k=1}^nk^3 \le \int_1^{n+1}x^3\diff x$$ ce qui donne $$\frac{n^4}{4} \le \sum_{k=1}^nk^3 \le \frac{(n+1)^4-1}{4}.$$ Ainsi, $\sum_{k=1}^nk^3 = \Theta(n^4)$.
+    \end{ex}
+
+  \item[A.2-5] {\itshape Why didn’t we use the integral approximation (A.12) directly on $\sum_{k=1}^n1/k$ to obtain an upper bound on the {\itshape n}th harmonic number?}
+    \begin{ex}
+      Car la primitive de $1/x$ n'est pas d\'efinie en $0$.
+    \end{ex}
+
+  \end{description}
+
+  \subsection{Problems}
+
+  \begin{description}
+    \item[A-1] {\itshape \bfseries Bounding summations}
+
+        {\itshape Give asymptotically tight bounds on the following summations. Assume that $r > 0$ and $s > 0$ are constants.}
+
+        \begin{Al}
+          \item $\sum\limits_{k=1}^nk^r$.
+          \item $\sum\limits_{k=1}^n\lg^sk$.
+          \item $\sum\limits_{k=1}^nk^r\lg^sk$
+        \end{Al}
+
+        \begin{pbrev}
+        \end{pbrev}
+
+  \end{description}

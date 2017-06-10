@@ -1,0 +1,33 @@
+\section{Divide-and-Conquer}
+
+\subsection{The maximum-subarray problem}
+
+\begin{description}
+  \item[4.1-1] {\itshape What does {\scshape Find-Maximum-Subarray} return when all elements of A are negative?} 
+    \begin{ex}
+      L'indice du plus grand \'el\'ement du tableau.
+    \end{ex}
+
+  \item[4.1-2] {\itshape Write pseudocode for the brute-force method of solving the maximum-subarray problem. Your procedure should run in $\Theta(n^2)$ time.}
+
+    \begin{ex}
+      \begin{codebox}
+        \Procname{\algo{Brute-Find-Max-Subarray}$(A)$}
+        \li $\id{index} \gets  \id{period} \gets -1$
+        \li $\id{sum} \gets -\infty$
+        \li \For $i=1$ \To \attrib{A}{length} \Do
+        \li $\id{tmp-sum} \gets 0$
+        \li \For $\id{tmp-period} \gets 1$ \To $\attrib{A}{length} - i+1$ \Do
+        \li $\id{tmp-sum} \gets \id{tmp-sum} + A[i + \id{tmp-period}-1]$
+        \li \If $\id{tmp-sum} > sum$ \Then
+        \li $\id{index} \gets i$
+        \li $\id{period} \gets \id{tmp-period} $
+        \li $\id{sum} \gets \id{tmp-sum}$ \End \End \End
+        \li \Return $(\id{index}, \id{period}, \id{sum})$
+      \end{codebox}
+    \end{ex}
+
+\end{description}
+
+\subsection{Strassen’s algorithm for matrix multiplication}
+\subsection{The substitution method for solving recurrences}
