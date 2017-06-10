@@ -151,6 +151,22 @@
       \end{itemize}
     \end{ex}
 
+  \item[4.2-7] {\itshape Show how to multiply the complex numbers $a + bi$ and $c + di$ using only three multiplications of real numbers. The algorithm should take $a, b, c$, and $d$ as input and produce the real component $ac-bd$ and the imaginary component $ad + bc$ separately.}
+    \begin{ex}
+      \begin{codebox}% TODO:implement Karatsuba algortihm
+        \Procname{\algo{Add-Complex-Number}$(a,b,c,d)$}
+        \li $P_1 = ac$
+        \li $P_2 = bd$
+        \li $P_3 = (a+b)(c+d)$
+        \li $\id{real} \gets P_1 - P_2$
+        \li $\id{imag} \gets P_3-P_1-P_2$
+        \li \Return (\id{real}, \id{imag})
+      \end{codebox}
+
+      Ceci est un cas particulier de l'algortihme de Karatsuba\footnote{voir \href{https://en.wikipedia.org/wiki/Karatsuba_algorithm}{Algorithme de Karatsuba} (Wikipedia)} qui a une complexit\'e en temps $O(n^{\lg 3})$.
+
+    \end{ex}
+
 \end{description}
 
 \subsection{The substitution method for solving recurrences}
@@ -201,10 +217,40 @@
   \end{ex}
 
   \item[4.3-4] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
   \item[4.3-5] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
   \item[4.3-6] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
   \item[4.3-7] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
   \item[4.3-8] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
   \item[4.3-9] {\itshape }
+
+    \begin{exrev}
+      
+    \end{exrev}
+
 \end{description}
 
