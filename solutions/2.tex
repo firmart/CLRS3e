@@ -242,9 +242,14 @@ insertion sort.}
 
 \item[2.3-6] {\itshape Observe that the {\bfseries while} loop of lines $5$–$7$ of the {\scshape Insertion-Sort} procedure in Section 2.1 uses a linear search to scan (backward) through the sorted subarray $A[1 \twodots j-1]$. Can we use a binary search (see Exercise 2.3-5) instead to improve the overall worst-case running time of insertion sort to $\Theta(n \lg n)$?}
 
-  \begin{exrev}
-    
-  \end{exrev}
+  \begin{ex}
+    Non. Dans la boucle \textbf{tant que}, on effectue deux t\^aches :
+    \begin{enumerate}
+      \item la recherche lin\'eaire de l'emplacement auquel on ins\`ere l'\'el\'ement : $\Theta (n)$ ;
+      \item le d\'ecalage de tous les \'el\'ements apr\`es cet emplacement : $\Theta (n)$.
+    \end{enumerate}
+    Remplacer la recherche lin\'eaire par la recherche dichotomique am\'eliore la premi\`ere t\^ache en temps logarithmique. N\'eanmoins, le d\'ecalage toujours en $\Theta(n)$, cause un temps quadratique \`a l'algorithme.
+  \end{ex}
 
 \item[2.3-7 $\star$] {\itshape Describe a $\Theta (n \lg n)$-time algorithm that, given a set $S$ of $n$ integers and another integer $x$, determines whether or not there exist two elements in $S$ whose sum is exactly $x$.}
 

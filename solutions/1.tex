@@ -41,16 +41,15 @@
       
     \end{exrev}
 
-  \item[1.2-2] {\itshape Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size $n$, insertion sort runs in $8n^2$ steps, while merg sort runs in $64n\lg n$ steps. For which values of $n$ does insertion sort beat merge sort?}
+  \item[1.2-2] {\itshape Suppose we are comparing implementations of insertion sort and merge sort on the same machine. For inputs of size $n$, insertion sort runs in $8n^2$ steps, while merge sort runs in $64n\lg n$ steps. For which values of $n$ does insertion sort beat merge sort?}
 
-    \begin{exrev}
-      
-    \end{exrev}
+    \begin{ex}
+      On cherche $N \in \N$ tel que $8N^2 < 64N\lg N$, ce qui revient \`a trouver les $N > 1$ qui v\'erifie $\frac{N}{\lg N} < 8$. D'apr\`es \href{https://www.wolframalpha.com/input/?i=N%2Flog_2(N)+%3C+8}{Wolfram Alpha}, $N < 43.56$, donc lorsque $N\in\llbracket 1,43  \rrbracket$, le tri d'insertion est plus plus efficace que le tri fusion.
+    \end{ex}
 
   \item[1.2-3] {\itshape What is the smallest value of n such that an algorithm whose running time is $100n^2$ runs faster than an algorithm whose running time is $2^n$ on the same machine?}
 
     \begin{exrev}
-      
     \end{exrev}  
 
 \end{description}
