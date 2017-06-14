@@ -293,8 +293,8 @@
     \begin{exrev} % TODO:Tikz recursive tree + methode de substitution
       On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser la {\itshape master method}. Pour trouver une borne sup\'erieure asymptotique, on peut d'abord conjecturer avec la m\'ethode d'arbre r\'ecursive puis v\'erifier l'exactitude avec la m\'ethode de substitution.
 
-      \ul{Arbre r\'ecursive} : Supposont que $n = 2^p$ avec $p \in \N$. On a un arbre complet de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par $cn^2\lg n$ et a 4 fils. Chaque niveau $i \in \{0, \ldots, p - 1\}$ a un co\^ut $c4^i\cdotc(\frac{n}{2^i})^2\lg \frac{n}{2^i} = cn^2(p - i)$. Les feuilles sont suppos\'ees d'\^etre \'etiquet\'ees par une constante $\Th(1)$ et il y en a $4^p = n^2$, donc le co\^ut des feuilles est $\Th(n^2)$. On obtient, en sommant les co\^uts de tous les niveaux, une id\'ee sur la borne asymptotique :
-      \begin{align*}
+      \ul{Arbre r\'ecursive} : Supposont que $n = 2^p$ avec $p \in \N$. On a un arbre complet de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par $cn^2\lg n$ et a 4 fils. Chaque niveau $i \in \{0, \ldots, p - 1\}$ a un co\^ut $c4^i\cdot c(\frac{n}{2^i})^2\lg \frac{n}{2^i} = cn^2(p - i)$. Les feuilles sont suppos\'ees d'\^etre \'etiquet\'ees par une constante $\Th(1)$ et il y en a $4^p = n^2$, donc le co\^ut des feuilles est $\Th(n^2)$. On obtient, en sommant les co\^uts de tous les niveaux, une id\'ee sur la borne asymptotique :
+      za\begin{align*}
         \sum_{i=0}^{p-1}cn^2(p-k)+ \Th(n^2) &= cn^2\sum_{i=0}^{p-1}(p-k) + \Th(n^2)\\
         &= cn^2(p^2 - \frac{(p-1)p}{2})\\
         &= \Th(n^2\lg^2 n) = \Th\left( (n\lg n)^2 \right).
@@ -304,9 +304,17 @@
     \end{exrev}
   
   \item[4.5-5 $\star$] {\itshape Consider the regularity condition $af(n/b) \le cf(n)$ for some constant $c < 1$, which is part of case $3$ of the master theorem. Give an example of constant $a\ge 1$ and $b>1$ and a function $f(n)$ that satisfies all the conditions in case 3 of the master theorem except the regularity condition.}
-    \begin{exrev}
-      
-    \end{exrev}
+    \begin{ex}
+      Fixons $a = 1, b = 2$ et \'etudions les fonctions de forme $f(n) = a_n\cdot n$ avec $a_n>0$ qui pourraient v\'erifier 
+      \[\left\{  
+          \begin{array}{ll}
+            f(n) &= \Omega(n^{\log_2 (1+\eps)}) \quad\textrm{ avec }\eps > 0\\
+            f(n/2) &\le cf(n) \quad\textrm{avec } c\ge 1.
+          \end{array}
+      \right.\]
+      La premi\`ere condition est v\'erifi\'ee si $a_n$ soit born\'ee. Pour que la deuxi\`eme l'est \'egalement, il faut que $a_{n/2} \le 2ca_n$ et que $a_n$ ne soit pas constante. \ul{Intuitivement}, on choisit $a_n = \cos(n)+2$ qui est toujours positive. Par substitution, on obtient l'in\'egalit\'e suivante \[\frac{\cos(n/2)+2}{2(\cos(n)+2} \le c \tag{1}\] Le maximum du premier membre de l'in\'egalit\'e $(1)$ est donn\'e par \href{https://www.wolframalpha.com/input/?i=max+(cos(n%2F2)%2B2)%2F(2(cos(n)%2B2)}{Wolfram Alpha} 
+et vaut approximativement $1.0303$. Donc on a $1.0303 \le c$, ce qui v\'erifie la deuxi\`eme condition. Ainsi, on ne peut appliquer le {\it master theorem} pour trouver une borne asymptotique inf\'erieure.
+    \end{ex}
 \end{description}
 
 
