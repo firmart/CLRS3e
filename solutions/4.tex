@@ -290,16 +290,23 @@
     \end{ex}
   
   \item[4.5-4] {\itshape Can the master method be applied to the recurrence $T(n) = 4T(n/2) + n^2\lg n$ ? Why or why not? Give an asymptotic upper bound for this recurrence.}
-    \begin{ex} % TODO:Tikz recursive tree
-      On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser le {\itshape master method}. Pour trouver une borne sup\'erieure asymptotique, on peut d'abord conjecturer avec la m\'ethode d'arbre r\'ecursive puis v\'erifier l'exactitude avec la m\'ethode de substitution.
+    \begin{exrev} % TODO:Tikz recursive tree + methode de substitution
+      On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser la {\itshape master method}. Pour trouver une borne sup\'erieure asymptotique, on peut d'abord conjecturer avec la m\'ethode d'arbre r\'ecursive puis v\'erifier l'exactitude avec la m\'ethode de substitution.
 
+      \ul{Arbre r\'ecursive} : Supposont que $n = 2^p$ avec $p \in \N$. On a un arbre complet de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par $cn^2\lg n$ et a 4 fils. Chaque niveau $i \in \{0, \ldots, p - 1\}$ a un co\^ut $c4^i\cdotc(\frac{n}{2^i})^2\lg \frac{n}{2^i} = cn^2(p - i)$. Les feuilles sont suppos\'ees d'\^etre \'etiquet\'ees par une constante $\Th(1)$ et il y en a $4^p = n^2$, donc le co\^ut des feuilles est $\Th(n^2)$. On obtient, en sommant les co\^uts de tous les niveaux, une id\'ee sur la borne asymptotique :
+      \begin{align*}
+        \sum_{i=0}^{p-1}cn^2(p-k)+ \Th(n^2) &= cn^2\sum_{i=0}^{p-1}(p-k) + \Th(n^2)\\
+        &= cn^2(p^2 - \frac{(p-1)p}{2})\\
+        &= \Th(n^2\lg^2 n) = \Th\left( (n\lg n)^2 \right).
+      \end{align*}
 
-    \end{ex}
+    \ul{M\'ethode de substitution}:
+    \end{exrev}
   
-  \item[4.5-5] {\itshape }
-    \begin{ex}
+  \item[4.5-5 $\star$] {\itshape Consider the regularity condition $af(n/b) \le cf(n)$ for some constant $c < 1$, which is part of case $3$ of the master theorem. Give an example of constant $a\ge 1$ and $b>1$ and a function $f(n)$ that satisfies all the conditions in case 3 of the master theorem except the regularity condition.}
+    \begin{exrev}
       
-    \end{ex}
-\end{description}<++>i
+    \end{exrev}
+\end{description}
 
 
