@@ -163,7 +163,7 @@
         \li \Return (\id{real}, \id{imag})
       \end{codebox}
 
-      Ceci est un cas particulier de l'algortihme de Karatsuba\footnote{voir \href{https://en.wikipedia.org/wiki/Karatsuba_algorithm}{Algorithme de Karatsuba} (Wikipedia)} qui a une complexit\'e en temps $O(n^{\lg 3})$ pour la multiplication entre deux nombres de $n$ chiffres.
+      Ceci est un cas particulier de l'algortihme de Karatsuba\footnote{voir \href{https://en.wikipedia.org/wiki/Karatsuba_algorithm}{Algorithme de Karatsuba} (Wikipedia)} qui a une complexit\'e en temps $\O(n^{\lg 3})$ pour la multiplication entre deux nombres de $n$ chiffres.
 
     \end{ex}
 
@@ -172,7 +172,7 @@
 \subsection{The substitution method for solving recurrences}
 
 \begin{description}
-  \item[4.3-1] {\itshape Show that the solution of $T(n) = T(n-1) + n$ is $O(n^2)$.}
+  \item[4.3-1] {\itshape Show that the solution of $T(n) = T(n-1) + n$ is $\O(n^2)$.}
 
     \begin{ex}
       Supposons que $T(n) \le cn^2$. On a 
@@ -184,12 +184,12 @@
       \end{align*}
       La fonction $\frac{n}{2n-1}$ \'etant d\'ecroissante, on peut choisir $c = 1$ et $n_0 = 1$ tel que la d\'efinition soit v\'erifi\'ee : 
       \begin{align*}
-        T(n) \in \left\{ f(n) : \forall n \ge 1,~ 0 \le f(n) \le n^2 \right\}  \Longrightarrow T(n) \in O(n^2).
+        T(n) \in \left\{ f(n) : \forall n \ge 1,~ 0 \le f(n) \le n^2 \right\}  \Longrightarrow T(n) \in \O(n^2).
       \end{align*}
 
     \end{ex}
 
-  \item[4.3-2] {\itshape Show that the solution of $T(n) = T(\lceil n/2 \rceil)+1$ is $O(\lg n)$.}
+  \item[4.3-2] {\itshape Show that the solution of $T(n) = T(\lceil n/2 \rceil)+1$ is $\O(\lg n)$.}
 
     \begin{ex}
       Supposons que $T(n) \le c\lg n$ est vraie pour tout $m \le n$ en particulier ${m = \lceil n/2 \rceil}$. Alors 
@@ -201,7 +201,7 @@
       \end{align*}
     \end{ex}
 
-  \item[4.3-3] {\itshape We saw that the solution of $T(n) = 2T(\lfloor n/2 \rfloor) + n$ is $O(n \lg n)$. Show that the solution of this recurrence is also $\Omega(n \lg n)$. Conclude that the solution is $\Theta(n \lg n)$.}
+  \item[4.3-3] {\itshape We saw that the solution of $T(n) = 2T(\lfloor n/2 \rfloor) + n$ is $\O(n \lg n)$. Show that the solution of this recurrence is also $\Omega(n \lg n)$. Conclude that the solution is $\Theta(n \lg n)$.}
   \begin{ex} %TODO:first hypothesis
     On suppose que $T(n) \ge c(n+2)\lg(n+2)$. On a 
     \begin{align*}
@@ -218,8 +218,8 @@
 
   \item[4.3-4] {\itshape }
 
-    \begin{exrev}
-      
+    \begin{exrev} 
+
     \end{exrev}
 
   \item[4.3-5] {\itshape }
@@ -253,4 +253,53 @@
     \end{exrev}
 
 \end{description}
+
+\subsection{The recursion-tree method for solving recurrences}
+
+\subsection{The master method for solving recurrences}
+
+\begin{description}
+ 
+  \item[4.5-1] {\itshape Use the master method to give tight asymptotic bounds for the following recurrences.}
+      \begin{Al}
+      \item $T(n) = 2T(n/4) + 1$.
+      \item $T(n) = 2T(n/4) + \sqrt{n}$.
+      \item $T(n) = 2T(n/4) + n$.
+      \item $T(n) = 2T(n/4) + n^2$.
+     \end{Al}
+    
+    \begin{ex}
+      Dans les quatre cas, on a $\log_b a = \log_4 2 = \frac{1}{2}$.
+      \begin{Al}
+    \item $f(n) = 1 = \O (n^{\log_4 2-\eps})$ avec $\eps \in ]0, 1]$, donc $T(n) = \Th(\sqrt{n})$.
+      \item $f(n) = \sqrt{n} = \Th(\sqrt{n})$, donc $T(n) = \Theta(\sqrt{n}\lg n)$.
+    \item $f(n) = n = \Omega(n^{\log_4 2+\eps})$ avec $\eps \in ]0,2]$,  de plus $af(n/b) = n/2 \le cf(n) = cn$ avec $ 1/2 \le c < 1 $, donc $T(n) = \Th(n)$.
+      \item $f(n) = n^2 = \Omega(n^{\log_4 2+\eps})$ avec $\eps \in ]0, 14] $, de plus $af(n/b) = n^2/8 \le c f(n)$ avec $ 1/8 \le c < 1$, donc $T(n) = \Th(n^2)$.
+      \end{Al}
+    \end{ex}
+
+  \item[4.5-2] {\itshape Professor Caesar wishes to develop a matrix-multiplication algorithm that is asymptotically faster than Strassen’s algorithm. His algorithm will use the divide-and-conquer method, dividing each matrix into pieces of size $n/4 \times n/4$, and the divide and combine steps together will take $\Th(n^2)$ time. He needs to determine how many subproblems his algorithm has to create in order to beat Strassen’s algorithm. If his algorithm creates a subproblems, then the recurrence for the running time $T(n)$ becomes $T(n) =  aT(n/4) + \Th(n^2)$. What is the largest integer value of a for which Professor Caesar’s algorithm would be asymptotically faster than Strassen’s algorithm?}
+    \begin{exrev}
+      
+    \end{exrev}
+ 
+  \item[4.5-3] {\itshape Use the master method to show that the solution to the binary-search recurrence $T(n) = T(n/2) + \Th(1)$ is $T(n) = \Th(\lg n)$. (See Exercise 2.3-5 for a description of binary search.)}
+
+    \begin{ex}
+       On a $a=1, b=2$, alors $n^{\lg_b a} = 1$. Comme $f(n) \in \Th(1) = \Th(n^{\lg_b a})$, $T(n) = \Th(\lg n)$.
+    \end{ex}
+  
+  \item[4.5-4] {\itshape Can the master method be applied to the recurrence $T(n) = 4T(n/2) + n^2\lg n$ ? Why or why not? Give an asymptotic upper bound for this recurrence.}
+    \begin{ex} % TODO:Tikz recursive tree
+      On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser le {\itshape master method}. Pour trouver une borne sup\'erieure asymptotique, on peut d'abord conjecturer avec la m\'ethode d'arbre r\'ecursive puis v\'erifier l'exactitude avec la m\'ethode de substitution.
+
+
+    \end{ex}
+  
+  \item[4.5-5] {\itshape }
+    \begin{ex}
+      
+    \end{ex}
+\end{description}<++>i
+
 

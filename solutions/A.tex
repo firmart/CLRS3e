@@ -12,12 +12,12 @@ R\'ef\'erences : \cite{uic_hw1}
     &= n^2.
   \end{align*}
 \end{ex}
-\item[A.1-2 $\star$]  {\itshape Show that $\sum_{k=1}^n1/(2k-1) = \ln (\sqrt{n}) + O(1)$ by manipulating the harmonic series.}
+\item[A.1-2 $\star$]  {\itshape Show that $\sum_{k=1}^n1/(2k-1) = \ln (\sqrt{n}) + \O(1)$ by manipulating the harmonic series.}
     \begin{ex}
       \begin{align*}
         \sum_{k=1}^n \frac{1}{2k-1} &= H_n - \frac{1}{2}\sum_{k=1}^n\frac{1}{k}\\
        &= \frac{1}{2}H_n\\
-       &= \ln(\sqrt{n}) + O(1).
+       &= \ln(\sqrt{n}) + \O(1).
       \end{align*}
     \end{ex}
   \item[A.1-3] {\itshape Show that $\sum_{k=0}^{\infty} k^2x^k = x(1+x)/(1-x)^3$ for $ 0 < |x| < 1$.}
@@ -44,9 +44,9 @@ R\'ef\'erences : \cite{uic_hw1}
       &= \frac{3x^2}{1-x^2} + \frac{2x^4}{(1-x^2)^2}
     \end{align*}
   \end{ex}
-  \item[A.1-6] {\itshape  Prove that $\sum_{k=1}^nO(f_k(i)) = O\left(\sum_{k=1}^n f_k(i)\right)$ by using the linearity proprety of summations.}
+  \item[A.1-6] {\itshape  Prove that $\sum_{k=1}^n\O(f_k(i)) = O\left(\sum_{k=1}^n f_k(i)\right)$ by using the linearity proprety of summations.}
     \begin{ex}
-    Soit pour tout $k \in \llbracket 1, n \rrbracket, g_k \in O(f_k)$, autrement dit $g_k \le c_kf_k$ est v\'erifi\'e \`a partir d'un rang $N_k$ avec $c_k > 0$. On a donc $\sum_{k=1}^n g_k \le \sum_{k=1}^ncf_k$ v\'erifi\'e \`a partir d'un rang $N = \max(N_1, \ldots,N_n)$ et $c = \max(c_1, \ldots,c_n)$ . D'o\`u $\sum_{k=1}^n g_k \in O(\sum_{k=1}^n f_k)$.
+    Soit pour tout $k \in \llbracket 1, n \rrbracket, g_k \in \O(f_k)$, autrement dit $g_k \le c_kf_k$ est v\'erifi\'e \`a partir d'un rang $N_k$ avec $c_k > 0$. On a donc $\sum_{k=1}^n g_k \le \sum_{k=1}^ncf_k$ v\'erifi\'e \`a partir d'un rang $N = \max(N_1, \ldots,N_n)$ et $c = \max(c_1, \ldots,c_n)$ . D'o\`u $\sum_{k=1}^n g_k \in \O(\sum_{k=1}^n f_k)$.
   \end{ex}
 \item[A.1-7] {\itshape Evaluate the product $\prod_{k=1}^n2\cdot 4^k$.}
     \begin{ex}
