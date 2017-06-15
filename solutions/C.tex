@@ -60,7 +60,7 @@
       \begin{figure}[H]
         \centering
         \includegraphics{img/C_1-8/C_1-8.pdf}
-        \caption{Triangle dit de Yang Hui ou de Pascal}
+        \caption{Triangle de Pascal}
         \label{fig:}
       \end{figure}
     \end{ex}
@@ -68,7 +68,25 @@
     \begin{ex}
       \[\sum_{i=1}^ni = \frac{n(n+1)}{2} = \frac{(n+1)!}{(n-2)!2!} = \binom{n+1}{2}.\]
     \end{ex}
-  \item[C.1-10] {\itshape }
+  \item[C.1-10] {\itshape Show that for any integers $n \ge 0$ and $ 0\le k \le n$, the expression $\binom{n}{k}$ achives its maximum value when $k = \lfloor n/2 \rfloor$ or $k = \lceil n/2 \rceil$.}
+    \begin{ex}
+      Il y a deux points de vue :
+      \begin{enumerate}
+        \item la sym\'etrie : $\binom{n}{k} = \binom{n}{n-k}$ ;
+        \item la croissance :
+        Comparons $\binom{n}{k}$ et $\binom{n}{k+1}$ : 
+        \begin{align*}
+          \binom{n}{k} < \binom{n}{k+1} &\iff \frac{n!}{k!(n-k)!} < \frac{n!}{(k+1)!(n-k-1)!}\\
+          &\iff k!(n-k)! > (k+1)!(n-k-1)!\\
+          &\iff (n-k)! > (k+1)(n-k-1)!\\
+          &\iff n-k>k+1\\
+          &\iff n > 2k+1\\
+          &\iff k<\frac{n-1}{2}.
+        \end{align*}
+      \end{enumerate}
+      En r\'eunissant ces deux r\'esultats, \`a $n$ fix\'e, on observe que les coefficients $\binom{n}{k}$ pour $k = 0, \ldots, \lfloor \frac{n}{2} \rfloor$ croissent et atteignent une valeur maximale lorsque $k = \lfloor n/2 \rfloor$ et $ k = \lceil n/2 \rceil$ (par sym\'etrie).
+    \end{ex}
+
   \item[C.1-11 $\star$] {\itshape }
   \item[C.1-12 $\star$] {\itshape }
   \item[C.1-13 $\star$] {\itshape }
