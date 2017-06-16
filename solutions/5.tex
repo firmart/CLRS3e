@@ -1,0 +1,58 @@
+\section{Probabilistic Analysis and Randomized Algorithms}
+
+\subsection{The hiring problem}
+
+\begin{description}
+  \item[5.1-1] {\itshape Show that the assumption that we are always able to determine which candidate is best, in line 4 of procedure {\scshape Hire-Assistant}, implies that we know a total order on the ranks of the candidates.}
+    \begin{ex}
+      Les axiomes de l'ordre (transitivit\'e, antisym\'etrie et reflexivit\'e) ne suffisent pas, la totalit\'e ($x \le y$ ou $y \le x$) est exig\'e. Sinon il se peut qu'on ne pourrait comparer deux candidates. 
+    \end{ex}
+
+  \item[5.1-2 $\star$] {\itshape Describe an implementation of the procedure {\scshape Random}$(a, b)$ that only makes calls to {\scshape Random}$(0, 1)$. What is the expected running time of your procedure, as a function of $a$ and $b$?}
+    \begin{ex}
+      \begin{codebox} %Todo:Tikz correctness, proba. tree
+        \Procname{\algo{Random}$(a,b)$}
+        \li $ n \gets b - a$
+        \li $ c \gets \lceil \lg (n+1) \rceil$
+        \li $ r \gets n$
+        \li \While $r > n$ \Do
+        \li $ r \gets 0$
+        \li \Comment Form a $c$-digit binary number 
+        \li \For $i = 1$ \To $c$ \Do
+        \li $r = r + \proc{Shift-Left}(\proc{Random}(0,1),i)$ \End \End
+        \li \Return $a + r$
+      \end{codebox}
+
+    \begin{itemize}
+      \item \ul{Exactitude} : La probabilit\'e d'obtenir un nombre $a + i$ avec $i \in \llbracket 0, n \rrbracket$ est :
+        \begin{align*}
+          \P(\left\{ a+i \right\}) &=  \sum_{i=0}^{\infty}\left( \frac{c-n-1}{c} \right)^i\cdot\left( \frac{1}{c} \right)\\
+          &= \left( \frac{1}{c} \right)\cdot\left( \frac{c}{n+1} \right)\\
+          &= \frac{1}{n+1}
+        \end{align*}
+        On a bien une distribution uniforme.
+      \item \ul{Complexit\'e en temps} : $\O (\lg (b-a))$. %TODO:proof
+    \end{itemize}
+
+    \end{ex}
+  \item[5.1-3 $\star$] {\itshape Suppose that you want to output $0$ with probability $1/2$ and $1$ with probability $1/2$. At your disposal is a procedure \proc{Biased-Random}, that outputs either $0$ or $1$. It outputs $1$ with some probability $p$ and $0$ with probability $1/p$, where $0 < p < 1$, but you do not know what $p$ is. Give an algorithm that uses \proc{Biased-Random} as a subroutine, and returns an unbiased answer, returning $0$ with probability $1/2$ and $1$ with probability $1/2$. What is the expected running time of your algorithm as a function of $p$?}
+    \begin{ex}%TODO:run-time proof, tikz diagram
+      On \'enonce ici le {\it skew-correction algorithm} dû \`a {\sc von~Neumann} :
+      \begin{codebox}
+        \Procname{\algo{Unbiased-Random}$(0, 1)$}
+        \li $(a_1, a_2) \gets (0,0)$
+        \li \While $a_1 == a_2$ \Do
+        \li $(a_1, a_2) \gets (\proc{Biased-Random}(0,1), \proc{Biased-Random}(0,1))$ \End
+        \li \Return $a_1$
+      \end{codebox}
+
+    \begin{itemize}
+      \item \ul{Exactitude} : La probabilit\'e d'obtenir un nombre $i$ avec $i \in \{ 0, 1 \}$ est :
+        \begin{align*}
+          \sum_{i = 0}^\infty\left( (1-p)^2 + p^2 \right)^i p(1-p) &= \frac{p(1-p)}{1-(2p^2-2p+1)}\\
+          &= \frac{1}{2}.
+        \end{align*}
+      \item \ul{Complexit\'e en temps} : $\O\left(\frac{1}{p(1-p)}\right)$.
+    \end{itemize}
+    \end{ex}
+\end{description}

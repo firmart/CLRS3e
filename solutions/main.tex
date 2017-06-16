@@ -26,7 +26,7 @@
 \newcommand{\algo}[1]{%
   \refstepcounter{algo}
   \textbf{Algorithme \thealgo.}\quad\textsc{#1}
-  \addcontentsline{toa}{algo}{\protect\numberline{\thesubsection.\thealgo}\quad #1}}
+  \addcontentsline{toa}{algo}{\protect\numberline{\thealgo}#1}}
 
 
 %%% Maths symbols packages %%%
@@ -173,6 +173,7 @@ yellow , filledcolor = myblue]{progressbar}
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
 \newcommand{\N}{\mathbb{N}}
+\renewcommand{\P}{\mathbb{P}}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\Th}{\Theta}
 \newcommand{\eps}{\varepsilon}
