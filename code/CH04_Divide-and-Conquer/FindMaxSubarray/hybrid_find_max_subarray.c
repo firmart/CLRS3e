@@ -3,18 +3,19 @@
 #include "max_subarray.h"
 
 int hybridFindMaxSubarray(int* arr, int* low, int* high){
+	int deref_high = *high, deref_low = *low;
 	if (*high - *low + 1 <= 17) // base case
-		return arr[*low]; 
+		return bruteFindMaxSubarray(arr, &deref_low, &deref_high);//TODO: Bug, rewrite with structure
 	int mid = (*low + *high)/2; // division
 	int leftLow = *low, leftHigh = mid, leftSum;
 	int rightLow = mid + 1, rightHigh = *high, rightSum;
 	int crossLow, crossHigh, crossSum;
-	//printf("Left : [%d, %d]\n", leftLow + 1, leftHigh + 1);
 	leftSum = hybridFindMaxSubarray(arr, &leftLow, &leftHigh);
-	//printf("Right : [%d, %d]\n", rightLow + 1, rightHigh + 1);
+	printf("Left : [%d, %d], leftSum = %d\n", leftLow + 1, leftHigh + 1, leftSum);
 	rightSum = hybridFindMaxSubarray(arr, &rightLow, &rightHigh);
-	//printf("Cross : [%d, %d]\n", *low, *high);
+	printf("Right : [%d, %d], rightSum = %d\n", rightLow + 1, rightHigh + 1, rightSum);
 	crossSum = findMaxCrossingSubarray(arr, *low, mid, *high, &crossLow, &crossHigh);
+	printf("Cross : [%d, %d], crossSum = %d\n", crossLow + 1, crossHigh + 1, crossSum);
 	if (leftSum >= rightSum && leftSum >= crossSum){
 		*low = 	leftLow;
 		*high = leftHigh;

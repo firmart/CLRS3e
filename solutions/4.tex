@@ -48,7 +48,7 @@
 
     \begin{ex} %TODO: implementation
       \begin{codebox}
-        \Procname{\algo{Linear-Find-Max-Subarray}}
+        \Procname{\algo{Linear-Find-Max-Subarray}$(A)$}
         \li $\id{left} \gets \id{right} \gets 1$
         \li $\id{sum} \gets A[1]$
         \li \For $j = 2$ \To n \Do
@@ -63,8 +63,8 @@
         \li $i \gets j - 1$
         \li \While $A[i] > 0$ \Then
         \li $i \gets i - 1$
-        \li $\id{left} \gets i + 1$
-
+        \li $\id{left} \gets i + 1$ \End \End \End
+        \li \Return \id{sum}
       \end{codebox}
     \end{ex}
 
