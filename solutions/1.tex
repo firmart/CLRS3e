@@ -12,7 +12,7 @@
             \item[$\bullet$] Tri de cartes ;
             \item[$\bullet$] Tri des prix en {\itshape e-shopping}.
           \end{itemize}
-        \item Enveloppe convexe : \frquote{The problem of finding convex hulls finds its practical applications in pattern recognition, image processing, statistics, geographic information system, game theory, construction of phase diagrams, and static code analysis by abstract interpretation. It also serves as a tool, a building block for a number of other computational-geometric algorithms such as the rotating calipers method for computing the width and diameter of a point set.} 
+        \item Enveloppe convexe : \frquote{The problem of finding convex hulls finds its practical applications in pattern recognition, image processing, statistics, geographic information system, game theory, construction of phase diagrams, and static code analysis by abstract interpretation. It also serves as a tool, a building block for a number of other computational-geometric algorithms such as the rotating calipers method for computing the width and diameter of a point set.} \cite{wiki:conv_hull}
       \end{itemize}
     \end{ex}
 
@@ -24,14 +24,29 @@
 
   \item[1.1-3] {\itshape Select a data structure that you have seen previously, and discuss its strengths and limitations.}
 
-    \begin{exrev}
-      
-    \end{exrev}
+    \begin{ex}
+        Un simple exemple serait la comparaison de liste cha\^in\'ee et de tableau :
+        \begin{itemize}
+          \item liste cha\^in\'ee :
+            \begin{itemize}
+              \item[\cmark] la taille de liste cha\^in\'ee peut varier suivant le temps ;
+              \item[\cmark] l'insertion et la supression d'\'el\'ements de la liste peuvent \^etre r\'ealis\'es facilement ;
+              \item[\xmark] requiert davatange m\'emoire pour stocker les r\'ef\'erences ;
+              \item[\xmark] acc\`es s\'equentiel d'\'el\'ement.
+            \end{itemize}
+          \item tableau :
+            \begin{itemize}
+              \item[\cmark] acc\`es al\'eatoire d'\'el\'ement ;
+              \item[\xmark] la taille du tableau est fix\'ee d\`es sa d\'eclaration ;
+              \item[\xmark] l'insertion et la suppression d'\'el\'ement requi\`erent une r\'eallocation du tableau, ce qui est co\^uteux.
+            \end{itemize}
+        \end{itemize}
+    \end{ex}
 
   \item[1.1-4] {\itshape How are the shortest-path and traveling-salesman problems given above similar? How are they different?}
 
     \begin{ex}
-      La similitude des deux prob\`emes est la recherche d'un parcours sur un graphe. La diff\'erence est que le TSP contient plus       de contraintes : on cherche un cycle hamiltonien suffisamment court (ou le optimal si possible) parmis les n\oe uds donn\'es tandis qu'au {\it shortest-path problem} on cherche le plus court parcours entre deux n\oe uds. \mbox{}
+      La similitude des deux probl\`emes est la recherche d'un parcours sur un graphe. La diff\'erence est que le TSP contient plus       de contraintes : on cherche un cycle hamiltonien suffisamment court (ou le optimal si possible) parmis les n\oe uds donn\'es tandis qu'au {\it shortest-path problem} on cherche le plus court parcours entre deux n\oe uds. \mbox{}
     \end{ex}
 
   \item[1.1-5] {\itshape Come up with a real-world problem in which only the best solution will do. Then come up with one in which a solution that is “approximately” the best is good enough.}
@@ -57,10 +72,11 @@
       On cherche $N \in \N$ tel que $8N^2 < 64N\lg N$, ce qui revient \`a trouver les $N > 1$ qui v\'erifie $\frac{N}{\lg N} < 8$. D'apr\`es \href{https://www.wolframalpha.com/input/?i=N%2Flog_2(N)+%3C+8}{Wolfram Alpha}, $N < 43.56$, donc lorsque $N\in\llbracket 1,43  \rrbracket$, le tri d'insertion est plus plus efficace que le tri fusion.
     \end{ex}
 
-  \item[1.2-3] {\itshape What is the smallest value of n such that an algorithm whose running time is $100n^2$ runs faster than an algorithm whose running time is $2^n$ on the same machine?}
+  \item[1.2-3] {\itshape What is the smallest value of $n$ such that an algorithm whose running time is $100n^2$ runs faster than an algorithm whose running time is $2^n$ on the same machine?}
 
-    \begin{exrev}
-    \end{exrev}  
+    \begin{ex}
+      On cherche l'entier obtenu par la solution de $100n^2 = 2^n $ arrondi par exc\`es. D'apr\`es \href{https://www.wolframalpha.com/input/?i=100*n%5E2+%3C+2%5En}{Wolfram Alpha} on trouve que $n > 14.324$, donc $n=15$.
+    \end{ex}  
 
 \end{description}
 
