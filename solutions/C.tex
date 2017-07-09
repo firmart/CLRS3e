@@ -44,6 +44,8 @@
     \end{ex}
   \item[C.1-7] {\itshape To choose $k$ objects from $n$, you can make one of the objects distinguished and consider whether the distinguished object is chosen. Use this approach to prove that \[\binom{n}{k} = \binom{n-1}{k}+\binom{n-1}{k-1}.\]}
     \begin{ex}\mbox{}\\ %TODO: fix diagram
+      On fixe un \'el\'ement parmi les $n$ et on en choisit $k$. Si l'\'el\'ement est choisi, il y a $\binom{n-1}{k-1}$ moyens de choisir les autres; sinon les $k$ \'el\'ements choisis sont inclus dans les $n-1$ restants et il y a $\binom{n-1}{k}$ moyens de choisir.
+    Conclusion : $ \binom{n}{k} = \binom{n-1}{k}+\binom{n-1}{k-1}$, d'o\`u ce que montre la figure (\ref{fig:C.1-7}).     
       {
         \begin{figure}[H]
           \centering
@@ -52,8 +54,6 @@
           \label{fig:C.1-7}
         \end{figure}
       }
-      On fixe un \'el\'ement parmi les $n$ et on en choisit $k$. Si l'\'el\'ement est choisi, il y a $\binom{n-1}{k-1}$ moyens de choisir les autres; sinon les $k$ \'el\'ements choisis sont inclus dans les $n-1$ restants et il y a $\binom{n-1}{k}$ moyens de choisir.
-    Conclusion : $ \binom{n}{k} = \binom{n-1}{k}+\binom{n-1}{k-1}$, d'o\`u ce que montre la figure (\ref{fig:C.1-7}).     
     \end{ex}
   \item[C.1-8] {\itshape Using the result of Exercise C.1-7, make a table for $n = 0, 1, \ldots, 6$ and $ 0\le k \le n$ of the binomial coefficients $\binom{n}{k}$ with $\binom{0}{0}$ at the top, $\binom{1}{0}$ and $\binom{1}{1}$ on the next line, and so forth. Such a table of binomial coefficients is called \textbf{Pascal’s triangle}.}
     \begin{ex}\mbox{}

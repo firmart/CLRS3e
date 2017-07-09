@@ -1,0 +1,29 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\begin{document}
+\begin{tikzpicture}
+  [level distance=10mm,
+    every node/.style={fill=red!60,circle,inner sep=1pt},
+    level 1/.style={sibling distance=20mm,nodes={fill=red!45}},
+    level 2/.style={sibling distance=10mm,nodes={fill=red!30}},
+  level 3/.style={sibling distance=5mm,nodes={fill=red!25}}]
+  \node {23}
+  child {node {17}
+    child {node {6}
+      child {node {5}}
+      child {node {7}}
+    }
+    child {node {13}
+      child {node {12}}
+      child[missing]
+    }
+  }
+  child {node {14}
+    child {node {10}
+      child[missing]
+      child[missing]
+    }
+    child {node {1}}
+  };
+\end{tikzpicture}
+\end{document}
