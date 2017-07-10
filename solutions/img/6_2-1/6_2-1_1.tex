@@ -1,0 +1,41 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\newcounter{node}
+
+\begin{document}
+\begin{tikzpicture}
+  [level distance=10mm,
+    every node/.style={fill=red!60,circle,inner sep=1pt},
+    level 1/.style={sibling distance=20mm,nodes={fill=red!45}},
+    level 2/.style={sibling distance=10mm,nodes={fill=red!30}},
+  level 3/.style={sibling distance=5mm,nodes={fill=red!25}},
+]
+  \node[label={90:\tiny1}] {27}
+  child {node[label={90:\tiny2}] {17}
+    child {node[label={90:\tiny4}] {16}
+      child {node[label={90:\tiny8}] {5}}
+      child {node[label={90:\tiny9}] {7}}
+    }
+    child {node[label={90:\tiny5}] {13}
+      child {node[label={95:\tiny10}] {12}}
+      child {node[label={85:\tiny11}] {4}}
+    }
+  }
+  child {node[label={90:\tiny3},fill=black!30, draw=black] {3}
+    child {node[label={90:\tiny6}] {10}
+      child {node[label={70:\tiny12}] {8}}
+      child {node[label={85:\tiny13}] {9}}
+    }
+    child {node[label={90:\tiny7}] {1}
+        child {node[label={70:\tiny14}] {0}}
+        child [missing]
+    }
+  };
+\end{tikzpicture}
+\end{document}
+
+
+
+
+

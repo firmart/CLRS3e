@@ -3,20 +3,20 @@
 \subsection{Heaps}
 
 \begin{description}
-  \item[6.1-1] {\itshape What are the minimum and maximum numbers of elements in a heap of height $h$?} %TODO:TikZ heap diagram
+  \descitem{6.1-1} {\itshape What are the minimum and maximum numbers of elements in a heap of height $h$?} %TODO:TikZ heap diagram
     \begin{ex}
       \begin{itemize}
         \item Minimum : $2^{h}$ ;
         \item Maximum : $2^{h+1}-1$ .
       \end{itemize}
-    \end{ex}
-  \item[6.1-2] {\itshape Show that an $n$-element heap has height $\lfloor \lg n \rfloor$.}
+    \end{ex} 
+  \descitem{6.1-2} {\itshape Show that an $n$-element heap has height $\lfloor \lg n \rfloor$.}
     \begin{ex}
-      On reprend le r\'esultat pr\'ec\'edent qui nous offre une in\'egalit\'e :
+      On reprend le r\'esultat pr\'ec\'edent (exercice \descref{6.1-1})  qui nous offre l'in\'egalit\'e :
       $$2^h \le n \le 2^{h+1}-1.$$
       Ainsi, \'etant donn\'e un nombre d'\'el\'ements $n$, l'hauteur $h$ d'un tas est born\'ee par :
       $$\lg n -1  < \lg(n+1)-1 \le h \le \lg n.$$
-      Sachant que $h$ est un entier, de $\lg n - 1 < h \le \lg n$ on d\'eduit que $h = \lg n$.
+      Sachant que $h$ est un entier, \`a partir de $\lg n - 1 < h \le \lg n$ on d\'eduit que $h = \lfloor \lg n \rfloor$.
     \end{ex}
   \item[6.1-3] {\itshape Show that in any subtree of a max-heap, the root of the subtree contains the largest value occurring anywhere in that subtree.}
     \begin{ex} %TODO:give a complet proove
@@ -27,12 +27,12 @@
       La propri\'et\'e d'un {\itshape max-heap} est que $A[\proc{Parent}(i)] \ge A[i]$ ce qui signifit que tout chemin partant de la racine forme une suite d\'ecroissante, et strictement, par hypoth\`ese. Par cons\'equence, le plus petit \'el\'ement r\'eside dans une des feuilles. Ce r\'esultat d\'ecoule du fait que la relation d'ordre n'est pas totale sur le tas.
     \end{ex}
   \item[6.1-5] {\itshape Is an array that is in sorted order a min-heap?}
-    \begin{ex}\mbox{}\\ %TODO:add proof
+    \begin{ex} %TODO:add proof
       Si le tableau est tri\'e de mani\`ere croissante, le tableau forme un {\itshape min-heap}.
     \end{ex}
   \item[6.1-6] {\itshape Is the array with values $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12\rangle$ a max-heap?}
     \begin{ex}
-      Consid\'erons la figure (\ref{fig:6.1-6}) qui est la repr\'esentation arborescente du tableau. On voit qu'il existe une sous suite qui n'est pas d\'ecroissante : $\langle 23, 17, 6, 7\rangle$, donc ce tableau ne v\'erifie pas la propri\'et\'e d'un \textit{max-heap}.
+      Consid\'erons la figure (\ref{fig:6.1-6}) qui est la repr\'esentation arborescente du tableau. On voit qu'il existe une sous-suite qui n'est pas d\'ecroissante : $(23, 17, 6, 7)$, donc ce tableau ne v\'erifie pas la propri\'et\'e d'un \textit{max-heap}.
         \begin{figure}[H]
           \centering
         \includegraphics[scale=1.5]{img/6_1-6/6_1-6.pdf}
@@ -41,6 +41,58 @@
         \end{figure}
     \end{ex}
   \item[6.1-7] {\itshape Show that, with the array representation for storing an $n$-element heap, the leaves are the nodes indexed by $\lfloor n/2 \rfloor +1, \lfloor n/2\rfloor + 2, \ldots, n$.}
+    \begin{ex}
+      Une feuille n'a pas de fils, et comme les n\oe ux sont ins\'er\'es de fa\c{c}on contig\"ue, il suffit de trouver le premier    $k$ tel que $\textsc{Left}(k) =2k > n$. On a donc $n/2 < k$ et puis comme $k$ est un entier, il vaut $\lfloor n/2 \rfloor +1$.
+    \end{ex}
+\end{description}
+
+\subsection{Maintaining the heap property}
+
+\begin{description}
+  \item[6.2-1] {\itshape Using Figure 6.2 as a model, illustrate the opescalen of $\textsc{Max-Heapify}(A,3)$ on the array $A = \langle 27, 17, 3, 16, 13, 10, 1, 5, 7, 12, 4, 8, 9, 0 \rangle$}
+    \begin{ex}
+
+      Regardons la figure (\ref{fig:Heapify}) qui illustre les op\'erations de $\textsc{Max-Heapify}(A,3)$ : (\subref{fig:6_2-1_1}) La configuration initiale du tas, avec la valeur $A[3]$ au n\oe ud $i = 3$ viole la propri\'et\'e de \textit{max-heap} puisque'elle n'est pas sup\'erieur \`a celle des enfants. La propri\'et\'e de \textit{max-heap} est restaur\'ee pour le n\oe ud $3$ en (\subref{fig:6_2-1_2}) via \'echange de $A[3]$ avec $A[6]$, ce qui d\'etruit la propri\'et\'e de \textit{max-heap} pour le n\oe ud $6$. L'appel r\'ecursif $\textsc{Max-Heapify}(A,6)$ prend maintenant $i=6$. Apr\`es  avoir \'echang\'e $A[6]$ avec $A[13]$, comme iluustr\'e en (\subref{fig:6_2-1_3}), le n\oe ud $6$ est corrig\'e, et l'appel r\'ecursif $\textsc{Max-Heapify}(A,13)$ n'engendre plus de modifications de la structure de donn\'ees.
+
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1.4]{img/6_2-1/6_2-1_1}
+          \caption{}\label{fig:6_2-1_1}
+        \end{subfigure}
+
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1.4]{img/6_2-1/6_2-1_2}
+          \caption{}\label{fig:6_2-1_2}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1.4]{img/6_2-1/6_2-1_3}
+          \caption{}\label{fig:6_2-1_3}
+        \end{subfigure}
+        \caption{L'action $\textsc{Max-Heapify}(A,3)$,o\`u $\attrib{A}{heap-size}= 14$.} 
+        \label{fig:Heapify}
+      \end{figure}
+    \end{ex}
+  \item[6.2-2] {\itshape }
+    \begin{exrev}
+      
+    \end{exrev}
+  \item[6.2-3] {\itshape }
+    \begin{exrev}
+      
+    \end{exrev}
+  \item[6.2-4] {\itshape }
+    \begin{exrev}
+      
+    \end{exrev}
+  \item[6.2-5] {\itshape }
+    \begin{exrev}
+      
+    \end{exrev}
+  \item[6.2-6] {\itshape }
     \begin{exrev}
       
     \end{exrev}
