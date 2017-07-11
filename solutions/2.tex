@@ -4,13 +4,13 @@
 
 \begin{description}
 
-  \item[2.1-1] {\itshape Using Figure 2.2 as a model, illustrate the operation of {\sc Insertion-Sort} on the array $A = \langle 31, 41, 59, 26, 41, 58 \rangle$.}
+  \descitem{2.1-1} {\itshape Using Figure 2.2 as a model, illustrate the operation of {\sc Insertion-Sort} on the array $A = \langle 31, 41, 59, 26, 41, 58 \rangle$.}
 
     \begin{exrev}
       
     \end{exrev}
 
-\item[2.1-2] {\itshape Rewrite the {\scshape Insertion-Sort} procedure to sort into non-increasing instead of non-decreasing order.}
+\descitem{2.1-2} {\itshape Rewrite the {\scshape Insertion-Sort} procedure to sort into non-increasing instead of non-decreasing order.}
     \begin{ex}
 \begin{codebox}
 \Procname{\algo{Decr-Insertion-Sort}$(A)$}
@@ -31,7 +31,7 @@
 \end{ex}
 
 
-\item[2.1-3] {\itshape Consider the {\bfseries searching problem}:
+\descitem{2.1-3} {\itshape Consider the {\bfseries searching problem}:
 
   {\bfseries Input:} A sequence of $n$ numbers $A = \langle a_1, a_2, \ldots, a_n \rangle$ and a value $v$.
 
@@ -68,7 +68,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 
 \end{ex}
 
-\item[2.1-4] {\itshape Consider the problem of adding two $n$-bit binary integers, stored in two $n$-element arrays $A$ and $B$. The sum of the two integers should be stored in binary form in an $(n+1)$-element array $C$.  State the problem formally and write pseudocode for adding the two integers.}
+\descitem{2.1-4} {\itshape Consider the problem of adding two $n$-bit binary integers, stored in two $n$-element arrays $A$ and $B$. The sum of the two integers should be stored in binary form in an $(n+1)$-element array $C$.  State the problem formally and write pseudocode for adding the two integers.}
 
   \begin{ex}\\
     {\bfseries Input:} Deux nombres binaires $a$ et $b$ sous forme de vecteur $A = \langle a_1, \ldots, a_n \rangle$ et $B = \langle b_1, \ldots, b_n \rangle$ tel que pour tout $i \in \llbracket 1,n \rrbracket, a_i, b_i \in \{0,1\}$. Avec l'indice $i=1$ d\'esignant le bit le plus significant.
@@ -88,12 +88,12 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
   \end{ex}
 \subsection{Analyzing algorithms}
 
-\item[2.2-1] {\itshape Express the function $n^3/1000-100n^2-100n+3$ in terms of $\Theta$-notation.}
+\descitem{2.2-1} {\itshape Express the function $n^3/1000-100n^2-100n+3$ in terms of $\Theta$-notation.}
   \begin{ex}
     $\Theta(n^3)$
   \end{ex}
 
-\item[2.2-2] {\itshape
+\descitem{2.2-2} {\itshape
   Consider sorting $n$ numbers stored in array $A$ by first finding the smallest element of $A$ and exchanging it with the element in $A[1]$. Then find the second smallest element of $A$, and exchange it with $A[2]$. Continue in this manner for the first $n-1$ elements of $A$. Write pseudocode for this algorithm, which is known as {\bfseries selection sort}. What loop invariant does this algorithm maintain? Why does it need to run for only the first $n-1$ elements, rather than for all $n$ elements? Give the best-case and worst-case running times of selection sort in $\Theta$-notation.}
 
   \begin{ex}
@@ -125,7 +125,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 
   \end{ex}
 
-\item[2.2-3] {\itshape Consider linear search again (see Exercise 2.1-3). How many elements of the input sequence need to be checked on the average, assuming that the element being searched for is equally likely to be any element in the array? How about in the worst case ? What are the average-case and worst-case running times of linear search in $\Theta$-notation? Justify your answers.}
+\descitem{2.2-3} {\itshape Consider linear search again (see Exercise 2.1-3). How many elements of the input sequence need to be checked on the average, assuming that the element being searched for is equally likely to be any element in the array? How about in the worst case ? What are the average-case and worst-case running times of linear search in $\Theta$-notation? Justify your answers.}
 
   \begin{ex}
     \begin{itemize}
@@ -135,7 +135,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
     Donc $\Theta(n)$ dans les deux cas.
   \end{ex}
 
-\item[2.2-4] {\itshape How can we modify almost any algorithm to have a good best-case running time?}
+\descitem{2.2-4} {\itshape How can we modify almost any algorithm to have a good best-case running time?}
 
   \begin{ex}
     Tester au d\'ebut de l'algorithme la nature de l'entr\'ee, si celle-ci v\'erifie une certaine condition, retourner un r\'esultat calcul\'e pr\'ealablement. 
@@ -146,13 +146,13 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 \subsection{Designing algorithms}
 
 \begin{description}
-  \item[2.3-1] {\itshape Using Figure 2.4 as a model, illustrate the operation of merge sort on the array $A =\\ \langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$}.
+  \descitem{2.3-1} {\itshape Using Figure 2.4 as a model, illustrate the operation of merge sort on the array $A =\\ \langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$}.
 
     \begin{exrev}
       
     \end{exrev}
 
-  \item[2.3-2] {\itshape Rewrite the \textsc{Merge} procedure so that it does not use sentinels, instead stopping once either array $L$ or $R$ has had all its elements copied back to $A$ and then copying the remainder of the other array back into $A$.}
+  \descitem{2.3-2} {\itshape Rewrite the \textsc{Merge} procedure so that it does not use sentinels, instead stopping once either array $L$ or $R$ has had all its elements copied back to $A$ and then copying the remainder of the other array back into $A$.}
 
     \begin{ex}
       \begin{codebox}
@@ -176,7 +176,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
       \end{codebox}
     \end{ex}
 
-  \item[2.3-3] {\itshape Use mathematical induction to show that when $n$ is an exact power of $2$, the solution of the recurrence 
+  \descitem{2.3-3} {\itshape Use mathematical induction to show that when $n$ is an exact power of $2$, the solution of the recurrence 
     $$T(n) = \left\{
       \begin{array}{ll}
         2 & \text{ if } n = 2,\\
@@ -196,7 +196,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
       \end{itemize}
     \end{ex}
 
-  \item[2.3-4] {\itshape We can express insertion sort as a recursive procedure as follows. In order to sort ${ A = [1 \twodots n]}$, we recursively sort $A = [1 \twodots n-1]$ and then insert $A[n]$ into the sorted array ${A[1 \twodots n-1]}$ Write a recurrence for the running time of this recursive version of
+  \descitem{2.3-4} {\itshape We can express insertion sort as a recursive procedure as follows. In order to sort ${ A = [1 \twodots n]}$, we recursively sort $A = [1 \twodots n-1]$ and then insert $A[n]$ into the sorted array ${A[1 \twodots n-1]}$ Write a recurrence for the running time of this recursive version of
 insertion sort.}
 
 \begin{ex}
@@ -208,7 +208,7 @@ insertion sort.}
   \right.$$
 \end{ex}
 
-\item[2.3-5] {\itshape Referring back to the searching problem (see Exercise 2.1-3), observe that if the sequence $A$ is sorted, we can check the midpoint of the sequence against and eliminate half of the sequence from further consideration. The {\bfseries binary search} algorithm repeats this procedure, halving the size of the remaining portion of the sequence each time. Write pseudocode, either iterative or recursive, for binary
+\descitem{2.3-5} {\itshape Referring back to the searching problem (see Exercise 2.1-3), observe that if the sequence $A$ is sorted, we can check the midpoint of the sequence against and eliminate half of the sequence from further consideration. The {\bfseries binary search} algorithm repeats this procedure, halving the size of the remaining portion of the sequence each time. Write pseudocode, either iterative or recursive, for binary
   search. Argue that the worst-case running time of binary search is $\Theta (\lg n)$.}
   \begin{ex}
     \begin{codebox}
@@ -239,7 +239,7 @@ insertion sort.}
     \end{align*}
   \end{ex}
 
-\item[2.3-6] {\itshape Observe that the {\bfseries while} loop of lines $5$–$7$ of the {\scshape Insertion-Sort} procedure in Section 2.1 uses a linear search to scan (backward) through the sorted subarray $A[1 \twodots j-1]$. Can we use a binary search (see Exercise 2.3-5) instead to improve the overall worst-case running time of insertion sort to $\Theta(n \lg n)$?}
+\descitem{2.3-6} {\itshape Observe that the {\bfseries while} loop of lines $5$–$7$ of the {\scshape Insertion-Sort} procedure in Section 2.1 uses a linear search to scan (backward) through the sorted subarray $A[1 \twodots j-1]$. Can we use a binary search (see Exercise 2.3-5) instead to improve the overall worst-case running time of insertion sort to $\Theta(n \lg n)$?}
 
   \begin{ex}
     Non. Dans la boucle \textbf{tant que}, on effectue deux t\^aches :
@@ -261,7 +261,7 @@ insertion sort.}
 \subsection{Problems}
 
 \begin{description}
-  \item[2-1] {\bfseries \itshape Insertion sort on small arrays in merge sort}
+  \descitem{2-1} {\bfseries \itshape Insertion sort on small arrays in merge sort}
 
     {\itshape Although merge sort runs in $\Theta(n \lg n)$ worst-case time and insertion sort runs in $\Theta(n^2)$ worst-case time, the constant factors in insertion sort can make it faster in practice for small problem sizes on many machines. Thus, it makes sense to {\bfseries coarsen} the leaves of the recursion by using insertion sort within merge sort when subproblems become sufficiently small. Consider a modification to merge sort in which $n=k$ sublists of length $k$ are sorted using insertion sort and then merged using the standard merging mechanism, where $k$ is a value to be determined.
       \begin{Al}
@@ -276,7 +276,7 @@ insertion sort.}
       
     \end{pbrev}
 
-  \item[2-2] {\bfseries \itshape Correctness of bubblesort}
+  \descitem{2-2} {\bfseries \itshape Correctness of bubblesort}
 
     {\itshape Bubblesort is a popular, but inefficient, sorting algorithm. It works by repeatedly
     swapping adjacent elements that are out of order.}
@@ -285,7 +285,7 @@ insertion sort.}
       
     \end{pbrev}
 
-  \item[2-3] {\bfseries \itshape Correctness of Horner’s rule}
+  \descitem{2-3} {\bfseries \itshape Correctness of Horner’s rule}
 
     {\itshape The following code fragment implements Horner’s rule for evaluating a polynomial}
 
@@ -293,7 +293,7 @@ insertion sort.}
       
     \end{pbrev}
 
-  \item[2-4] {\bfseries \itshape Inversions}
+  \descitem{2-4} {\bfseries \itshape Inversions}
 
     \begin{pbrev}
       
