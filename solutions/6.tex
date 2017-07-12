@@ -33,7 +33,7 @@
   \descitem{6.1-6} \textit{Is the array with values $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12\rangle$ a max-heap?}
     \begin{ex}
       Consid\'erons la figure (\ref{fig:6.1-6}) qui est la repr\'esentation arborescente du tableau. On voit qu'il existe une sous-suite qui n'est pas d\'ecroissante : $(23, 17, 6, 7)$, donc ce tableau ne v\'erifie pas la propri\'et\'e d'un \textit{max-heap}.
-        \begin{figure}[t]
+        \begin{figure}[H]
           \centering
         \includegraphics[scale=1.5]{img/6_1-6/6_1-6.pdf}
         \caption{Tas sous forme d'arbre du tableau $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12\rangle$}
@@ -54,7 +54,7 @@
 
       Regardons la figure (\ref{fig:Heapify}) qui illustre les op\'erations de $\proc{Max-Heapify}(A,3)$ : (\subref{fig:6_2-1_1}) La configuration initiale du tas, avec la valeur $A[3]$ au n\oe ud $i = 3$ viole la propri\'et\'e de \textit{max-heap} puisque'elle n'est pas sup\'erieur \`a celle des enfants. La propri\'et\'e de \textit{max-heap} est restaur\'ee pour le n\oe ud $3$ en (\subref{fig:6_2-1_2}) via \'echange de $A[3]$ avec $A[6]$, ce qui d\'etruit la propri\'et\'e de \textit{max-heap} pour le n\oe ud $6$. L'appel r\'ecursif $\proc{Max-Heapify}(A,6)$ prend maintenant $i=6$. Apr\`es  avoir \'echang\'e $A[6]$ avec $A[13]$, comme illustr\'e en (\subref{fig:6_2-1_3}), le n\oe ud $6$ est corrig\'e, et l'appel r\'ecursif $\proc{Max-Heapify}(A,13)$ n'engendre plus de modifications de la structure de donn\'ees.
 
-      \begin{figure}[t]
+      \begin{figure}[H]
         \centering
         \begin{subfigure}[t]{.45\textwidth}
           \centering
@@ -202,7 +202,7 @@ $\lfloor \attrib{A}{length}/2 \rfloor$ to $1$ rather than increase from $1$ to $
 \end{matrix}
 \]
 o\`u $N_i$ d\'esigne le nombre de n\oe uds apr\`es avoir \^oter les n\oe uds de hauteur r\'espectives $0, \ldots, i-1$ et $F_i$ le nombre de feuilles de ce nouveau arbre.
-\`A partir de ces relations, il en d\'ecoule 
+\`A partir de ces relations, il en d\'ecoule que
 \[ N_{i+1} = N_i - \lceil N_i/2 \rceil = \lfloor N_i/2 \rfloor \le N_i/2 \]
 puis, par it\'eration, on a $N_i \le n/2^i$. On conclut que $F_i = \lceil N_i/2 \rceil \le \lceil n/2^{i+1} \rceil$.
     \end{ex}
@@ -214,7 +214,7 @@ puis, par it\'eration, on a $N_i \le n/2^i$. On conclut que $F_i = \lceil N_i/2 
 \descitem{6.4-1} \textit{Using Figure 6.4 as a model, illustrate the operation of \proc{Heapsort} on the array \\$A = \langle 5, 13, 2, 25, 7, 17, 20, 8, 4 \rangle$.}
     \begin{ex}
       Regardons la figure (\ref{fig:Heap-Sort}). (\subref{fig:6_4-1_1}) L'arbre binaire avant l'appel de  \proc{Build-Max-Heap}. (\subref{fig:6_4-1_2}) la structure de \textit{max-heap} juste apr\`es sa construction par \proc{Build-Max-Heap}. (\subref{fig:6_4-1_3})-(\subref{fig:6_4-1_10}) Le \textit{max-heap} juste apr\`es chaque appel de \proc{Max-Heapify}. La valeur de $i$ \`a ce moment est montr\'ee. Seul les n\oe uds rouges restent dans le tas.
-      \begin{figure}[t]%TODO:rajouter le resulta dans une subfigure sous forme de tableau
+      \begin{figure}[H]%TODO:rajouter le resulta dans une subfigure sous forme de tableau
         \centering
         \begin{subfigure}[t]{.30\textwidth}
           \centering
@@ -270,20 +270,81 @@ puis, par it\'eration, on a $N_i \le n/2^i$. On conclut que $F_i = \lceil N_i/2 
         \label{fig:Heap-Sort}
       \end{figure}
     \end{ex}
-\descitem{6.4-2} \textit{}
+\descitem{6.4-2} {\itshape Argue the correctness of \proc{Heap-Sort} using the following loop invariant:
+
+  At the start of each iteration of the \textbf{for} loop of lines 2–5, the subarray
+$A[1 \twodots i]$ is a max-heap containing the $i$ smallest elements of $A[1 \twodots n]$, and
+the subarray $A[i+1 \twodots n]$ contains the $n-i$ largest elements of $A[1 \twodots n]$,
+sorted.}
+    \begin{ex}
+      \begin{description}
+        \item[Initialisation :] Avant la premi\`ere it\'eration de la boucle, $i=n$. De plus, par construction de \proc{Build-Max-Heap}, $A[i\twodots n]$ est un \textit{max-heap}. Il contient le $n$-i\`eme plus petit (autrement dit le plus grand) \'el\'ement qui n'est rien d'autre que la racine du tas. Le sous-tableau $A[i+1\twodots n]$ est vide, donc ne contient aucun \'el\'ement tri\'e.
+        \item[Maintenance :] Supposons, au d\'ebut de l'it\'eration \`a laquelle $i=k$, que le tableau $A[1\twodots i]$ est un \textit{max-heap} contenant le $i$-i\`eme plus petit \'el\'ement et que le tableau $A[i+1\twodots n]$ contient les $n-i$ plus grands \'el\'ements de $A[1\twodots n]$ tri\'es d'ordre croissant. $A[1\twodots i]$ \'etant un \textit{max-heap}, $A[1]$ est donc le plus grand \'el\'ement. En l'\'echangeant avec $A[i]$, $A[i\twodots n]$ contient les $n-i+1$ plus grands \'el\'ements de $A[1\twodots n]$. En outre, en cas d'existence, $\proc{Left}(1)$ et $\proc{Right}(1)$ sont des \textit{max-heap}s, ainsi en appliquant \proc{Max-Heapify} au n\oe ud $1$, il est garantie que $A[1\twodots i-1]$ est un \textit{max-heap}. 
+        \item[Terminaison :] Apr\`es l'it\'eration $i=2$, $A[1]$ est le plus petit \'el\'ement de $A[1\twodots n]$ et $A[2\twodots n]$ est tri\'e de mani\`ere croissante, donc $A[1 \twodots n]$ est tri\'e.
+      \end{description}
+    \end{ex}
+\descitem{6.4-3} \textit{What is the running time of \proc{Heap-sort} on an array $A$ of length n that is already
+sorted in increasing order? What about decreasing order?}
     \begin{exrev}
       
     \end{exrev}
-\descitem{6.4-3} \textit{}
+\descitem{6.4-4} \textit{Show that the worst-case running time of \proc{Heapsort} is $\Omega (n \lg n)$.}
     \begin{exrev}
       
     \end{exrev}
-\descitem{6.4-4} \textit{}
-    \begin{exrev}
-      
-    \end{exrev}
-  \item[6.4-5 $\star$]  \textit{}
+  \item[6.4-5 $\star$]  \textit{Show that when all elements are distinct, the best-case running time of \proc{Heap-Sort}
+is $\Omega(n \lg n)$.}
     \begin{exrev}
       
     \end{exrev}
 \end{description}
+
+\subsection{Priority queues}
+
+\begin{description}
+    \descitem{6.5-1} \textit{Illustrate the operation of \proc{Heap-Extract-Max} on the heap $A = \langle 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2,1 \rangle$.}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-2} \textit{Illustrate the operation of \proc{Max-Heap-Insert} on the heap $A = \langle 15, 13, 9, 5, 12, 8, 7, 4, 0, 6, 2,1 \rangle$.}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-3} \textit{Write pseudocode for the procedures \proc{Heap-Minimum}, \proc{Heap-Extract-Min}, \proc{Heap-Decrease-Key}, and \proc{Min-Heap-Insert} that implement a min-priority queue with a min-heap.}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-4} \textit{Why do we bother setting the key of the inserted node to $-\infty$ in line 2 of \proc{Max-Heap-Insert} when the next thing we do is increase its key to the desired value ?}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-5} {\itshape Argue the correctness of \proc{Heap-Increase-Key} using the following loop invariant :
+
+At the start of each iteration of the \textbf{while} loop of lines 4–6, the subarray
+$A[1 \twodots \attrib{A}{heap-size}]$ satisfies the max-heap property, except that there may
+be one violation: $A[i]$ may be larger than $A[\proc{Parent}(i)]$.
+
+You may assume that the subarray $A[1 \twodots \attrib{A}{heap-size}]$ satisfies the max-heap property at the time \proc{Heap-Increase-Key} is called.
+}
+
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-6} \textit{}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-7} \textit{}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-8} \textit{}
+        \begin{exrev}
+          
+        \end{exrev}
+    \descitem{6.5-9} \textit{}
+        \begin{exrev}
+          
+        \end{exrev}
+\end{description}
+
