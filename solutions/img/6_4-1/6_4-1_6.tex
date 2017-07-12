@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\newcounter{node}
+
+\begin{document}
+\begin{tikzpicture}
+  [level distance=10mm,
+    label distance=-3pt,
+    every node/.style={fill=red!60,circle,inner sep=1pt, minimum size=6mm},
+    level 1/.style={sibling distance=30mm,nodes={fill=red!45}},
+    level 2/.style={sibling distance=17mm,nodes={fill=red!30}},
+  level 3/.style={sibling distance=10mm,nodes={fill=red!25}},
+]
+
+  \node {8}
+  child {node {7}
+    child {node {2}
+      child {node [draw=none, fill=blue!30, draw=blue] {20} edge from parent[draw=none]}
+      child {node[draw=none, fill=blue!30, draw=blue] {25} edge from parent[draw=none]}
+    }
+    child {node {4}
+      child[missing] 
+      child[missing]
+    }
+  }
+  child {node {5}
+    child {node[draw=none, fill=blue!30, label={0:$i$},draw=blue] {13} edge from parent[draw=none]
+      child [missing]
+    child [missing]
+    }
+    child { node[draw=none, fill=blue!30, draw=blue] {17} edge from parent[draw=none]
+        child [missing]
+        child [missing]
+    }
+  };
+\end{tikzpicture}
+\end{document}
+
+
+
+
+

@@ -1,0 +1,42 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\newcounter{node}
+
+\begin{document}
+\begin{tikzpicture}
+  [level distance=10mm,
+    label distance=-3pt,
+    every node/.style={fill=red!60,circle,inner sep=1pt, minimum size=6mm},
+    level 1/.style={sibling distance=30mm,nodes={fill=red!45}},
+    level 2/.style={sibling distance=17mm,nodes={fill=red!30}},
+  level 3/.style={sibling distance=10mm,nodes={fill=red!25}},
+]
+  \node {25}
+  child {node {13}
+    child {node {8}
+      child {node {5}}
+      child {node {4}}
+    }
+    child {node {7}
+      child[missing] 
+      child[missing]
+    }
+  }
+  child {node {20}
+    child {node {17}
+      child [missing]
+    child [missing]
+    }
+    child {node {2}
+        child [missing]
+        child [missing]
+    }
+  };
+\end{tikzpicture}
+\end{document}
+
+
+
+
+

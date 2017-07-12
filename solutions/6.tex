@@ -7,7 +7,7 @@
     \begin{ex}
       \begin{itemize}
         \item Minimum : $2^{h}$ ;
-        \item Maximum : $2^{h+1}-1$ .
+        \item Maximum : $2^{h+1}-1$.
       \end{itemize}
     \end{ex} 
   \descitem{6.1-2} \textit{Show that an $n$-element heap has height $\lfloor \lg n \rfloor$.}
@@ -33,7 +33,7 @@
   \descitem{6.1-6} \textit{Is the array with values $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12\rangle$ a max-heap?}
     \begin{ex}
       Consid\'erons la figure (\ref{fig:6.1-6}) qui est la repr\'esentation arborescente du tableau. On voit qu'il existe une sous-suite qui n'est pas d\'ecroissante : $(23, 17, 6, 7)$, donc ce tableau ne v\'erifie pas la propri\'et\'e d'un \textit{max-heap}.
-        \begin{figure}[H]
+        \begin{figure}[t]
           \centering
         \includegraphics[scale=1.5]{img/6_1-6/6_1-6.pdf}
         \caption{Tas sous forme d'arbre du tableau $\langle 23, 17, 14, 6, 13, 10, 1, 5, 7, 12\rangle$}
@@ -54,7 +54,7 @@
 
       Regardons la figure (\ref{fig:Heapify}) qui illustre les op\'erations de $\proc{Max-Heapify}(A,3)$ : (\subref{fig:6_2-1_1}) La configuration initiale du tas, avec la valeur $A[3]$ au n\oe ud $i = 3$ viole la propri\'et\'e de \textit{max-heap} puisque'elle n'est pas sup\'erieur \`a celle des enfants. La propri\'et\'e de \textit{max-heap} est restaur\'ee pour le n\oe ud $3$ en (\subref{fig:6_2-1_2}) via \'echange de $A[3]$ avec $A[6]$, ce qui d\'etruit la propri\'et\'e de \textit{max-heap} pour le n\oe ud $6$. L'appel r\'ecursif $\proc{Max-Heapify}(A,6)$ prend maintenant $i=6$. Apr\`es  avoir \'echang\'e $A[6]$ avec $A[13]$, comme illustr\'e en (\subref{fig:6_2-1_3}), le n\oe ud $6$ est corrig\'e, et l'appel r\'ecursif $\proc{Max-Heapify}(A,13)$ n'engendre plus de modifications de la structure de donn\'ees.
 
-      \begin{figure}[H]
+      \begin{figure}[t]
         \centering
         \begin{subfigure}[t]{.45\textwidth}
           \centering
@@ -184,30 +184,106 @@ $\lfloor \attrib{A}{length}/2 \rfloor$ to $1$ rather than increase from $1$ to $
     \end{ex}
     \descitem{6.3-3} \textit{Show that there are at most $\lceil n/2^{h+1}\rceil$ nodes of height $h$ in any $n$-element heap.}
     \begin{ex} %TODO:relire et changer les notations
-      Notons que les n\oe uds ayant une hauteur $j$ deviennent des feuilles apr\`es qu'on \^ote ceux qui ont comme hauteur $0, \ldots, j-1$. Sachant qu'un tas ayant $n$ \'el\'ements a exactement $n - \lfloor n/2 \rfloor = \lceil n/2 \rceil$ (d'apr\`es l'exercice \descref{6.1-7} et une identit\'e de partie enti\`ere du chapitre 3), on peut \'etablir deux suites r\'ecurrentes :
+      Notons que les n\oe uds ayant une hauteur $j$ deviennent des feuilles apr\`es qu'on \^ote ceux qui ont comme hauteur $0, \ldots, j-1$. Sachant qu'un tas ayant $n$ \'el\'ements a exactement $n - \lfloor n/2 \rfloor = \lceil n/2 \rceil$ feuilles (d'apr\`es l'exercice \descref{6.1-7} et une identit\'e de partie enti\`ere du chapitre 3), on peut \'etablir deux suites r\'ecurrentes :
 \[
 \begin{matrix}
 \left\{
 	\begin{array}{ll}
-	y_0 = n\\
-	y_{i+1} = y_i - x_i
+	N_0 = n\\
+	N_{i+1} = N_i - F_i
 	\end{array}
 \right.  &
 \left\{
 	\begin{array}{ll}
-	x_0 = \lceil y_0/2 \rceil\\
-	x_i = \lceil y_i/2 \rceil
+	F_0 = \lceil N_0/2 \rceil\\
+	F_i = \lceil N_i/2 \rceil
 	\end{array}
-  \right. ,
+  \right. 
 \end{matrix}
 \]
-o\`u $y_i$ d\'esigne le nombre de n\oe uds apr\`es avoir \^oter les n\oe uds de hauteur r\'espectives $0, \ldots, i-1$ et $x_i$ le nombre de feuille de l'arbre $i$.
+o\`u $N_i$ d\'esigne le nombre de n\oe uds apr\`es avoir \^oter les n\oe uds de hauteur r\'espectives $0, \ldots, i-1$ et $F_i$ le nombre de feuilles de ce nouveau arbre.
 \`A partir de ces relations, il en d\'ecoule 
-\begin{align*}
-y_{i+1} &= y_i - \lceil y_i/2 \rceil\\
-&= \lfloor y_i/2 \rfloor\\
-&\le y_i/2,
-\end{align*}
-puis on a $y_i \le n/2^i$. Il s'ensuit que $x_i = \lceil y_i/2 \rceil \le \lceil n/2^{i+1} \rceil$.
-\end{exrev}
+\[ N_{i+1} = N_i - \lceil N_i/2 \rceil = \lfloor N_i/2 \rfloor \le N_i/2 \]
+puis, par it\'eration, on a $N_i \le n/2^i$. On conclut que $F_i = \lceil N_i/2 \rceil \le \lceil n/2^{i+1} \rceil$.
+    \end{ex}
+\end{description}
+
+\subsection{The heapsort algorithm}
+
+\begin{description}
+\descitem{6.4-1} \textit{Using Figure 6.4 as a model, illustrate the operation of \proc{Heapsort} on the array \\$A = \langle 5, 13, 2, 25, 7, 17, 20, 8, 4 \rangle$.}
+    \begin{ex}
+      Regardons la figure (\ref{fig:Heap-Sort}). (\subref{fig:6_4-1_1}) L'arbre binaire avant l'appel de  \proc{Build-Max-Heap}. (\subref{fig:6_4-1_2}) la structure de \textit{max-heap} juste apr\`es sa construction par \proc{Build-Max-Heap}. (\subref{fig:6_4-1_3})-(\subref{fig:6_4-1_10}) Le \textit{max-heap} juste apr\`es chaque appel de \proc{Max-Heapify}. La valeur de $i$ \`a ce moment est montr\'ee. Seul les n\oe uds rouges restent dans le tas.
+      \begin{figure}[t]%TODO:rajouter le resulta dans une subfigure sous forme de tableau
+        \centering
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_1}
+          \caption{}\label{fig:6_4-1_1}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_2}
+          \caption{}\label{fig:6_4-1_2}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_3}
+          \caption{}\label{fig:6_4-1_3}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_4}
+          \caption{}\label{fig:6_4-1_4}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_5}
+          \caption{}\label{fig:6_4-1_5}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_6}
+          \caption{}\label{fig:6_4-1_6}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_7}
+          \caption{}\label{fig:6_4-1_7}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_8}
+          \caption{}\label{fig:6_4-1_8}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_9}
+          \caption{}\label{fig:6_4-1_9}
+        \end{subfigure}
+        \begin{subfigure}[t]{.30\textwidth}
+          \centering
+          \includegraphics[scale=0.8]{img/6_4-1/6_4-1_10}
+          \caption{}\label{fig:6_4-1_10}
+        \end{subfigure}
+        \caption{Le fonctionnement du $\proc{Heap-Sort}(A)$ sur $A = \langle 5, 13, 2, 25, 7, 17, 20, 8, 4 \rangle$.} 
+        \label{fig:Heap-Sort}
+      \end{figure}
+    \end{ex}
+\descitem{6.4-2} \textit{}
+    \begin{exrev}
+      
+    \end{exrev}
+\descitem{6.4-3} \textit{}
+    \begin{exrev}
+      
+    \end{exrev}
+\descitem{6.4-4} \textit{}
+    \begin{exrev}
+      
+    \end{exrev}
+  \item[6.4-5 $\star$]  \textit{}
+    \begin{exrev}
+      
+    \end{exrev}
 \end{description}
