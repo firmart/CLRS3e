@@ -1,0 +1,130 @@
+\section{Elementary Graph Algorithms}
+
+\subsection{Representations of graphs}
+
+\begin{description}
+
+\descitem{22.1-1} \textit{Given an adjacency-list representation of a directed graph, how long does it take to compute the out-degree of every vertex? How long does it take to compute the in-degrees?}    
+
+\begin{ex}
+Soient $G = (V,E)$ un graphe non-orienté, $v \in V$ un de ses sommets et $\attrib{G}{Adj}$ sa représentation en liste adjacente. On peut calculer le degré sortant de $v$ en calculant simplement la longueur de $\attrib{G}{Adj}[v]$. Ainsi, le calcul de degré sortant de tous les sommets se fait en $\Theta(V + E)$.
+
+Pour calculer le degré entrant de $v$ on doit parcourir $\attrib{G}{Adj}$ entièrement. De cette manière, il nous faudra $\Theta(VE)$ en temps. On peut aussi implémenter une liste de taille $|V|$, indexé par ses sommets dans lequel chaque élément est initialisé par 0. Dans ce cas là, il suffit de parcourir $\attrib{G}{Adj}$ une fois en comptant chaque occurrence des sommets. Cette méthode a $\Theta(V + E)$ en complexité de temps et $\Theta(V)$ en espace.
+\end{ex}
+
+
+\descitem{22.1-2} \textit{Give an adjacency-list representation for a complete binary tree on $7$ vertices. Give an equivalent adjacency-matrix representation. Assume that vertices are numbered from $1$ to $7$ as in a binary heap.}    
+
+%TODO:Horizontally centering subfigure
+\begin{ex}
+\begin{figure}[H]
+\begin{subfigure}{0.45\textwidth}
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+1: & 2 & 3 \\
+2: & 4 & 5 \\
+3: & 6 & 7 \\
+4: & 2 &   \\
+5: & 2 &   \\
+6: & 3 &   \\
+7: & 3 &  
+\end{tabular}
+\end{table}
+\caption{Liste adjacente}
+\end{subfigure}
+\begin{subfigure}{0.45\textwidth}
+\begin{center}
+$$
+\begin{pmatrix}
+  0 & 1 & 1 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 1 & 1 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 1 & 1\\
+  0 & 1 & 0 & 0 & 0 & 0 & 0\\
+  0 & 1 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 1 & 0 & 0 & 0 & 0\\
+  0 & 0 & 1 & 0 & 0 & 0 & 0\\
+\end{pmatrix}
+$$
+\end{center}
+\caption{Matrice adjacente}
+\end{subfigure}
+\caption{Représentation de l'arbre complet de 7 sommets en liste adjacente et matrice adjacente}
+\end{figure}
+\end{ex}
+\descitem{22.1-3} \textit{The \textbf{transpose} of a directed graph $G = (V, E)$ is the graph $G^T = (V, E^T)$, where $E^T = \{(v,u) \in V \times V : (u,v) \in E \}$. Thus, $G^T$ is $G$ with all its edges reversed.  Describe efficient algorithms for computing $G^T$ from $G$, for both the adjacency-list and adjacency-matrix representations of $G$. Analyze the running times of your algorithms.}    
+\begin{ex}
+Pour transposer une liste adjacente, il est nécessaire de la parcourir entièrement, donc la complexité est de $\Theta(V + E)$.
+\begin{codebox}
+\Procname{\algo{Transpose-Adj-List}$(\id{Adj})$}
+    \li Create a new adjacency-list \id{newAdj}
+    \li \For each linked-list $i$ of \id{Adj}\Do
+    \li \For each element $j$ of \id{Adj}[i] \Do 
+    \li $\attrib{newAdj[j]}{append(i)}$ \End \End
+\end{codebox}
+Quant à une matrice adjacente, il suffit de parcourir les éléments  supérieurs et les échanger à leur élément symétrique. De cette manière, il y a au total $\frac{n(n-1)}{2}$ d'échanges, d'où la complexité $\Theta(V^2)$.
+\begin{codebox}
+\Procname{\algo{Transpose-Adj-Matrix}$(M)$}
+    \li \For $i \gets 1$ \To $\attrib{M}{size}$ \Do
+    \li \For $j \gets i+1$ \To $\attrib{M}{size}$ \Do
+    \li $\func{swap}(M[i,j],M[j,i])$ \End \End
+\end{codebox}
+\end{ex}
+%TODO:english quote
+\descitem{22.1-4} \textit{Given an adjacency-list representation of a multigraph $G = (V, E)$, describe an $O(V + E)$-time algorithm to compute the adjacency-list representation of the \foreignquote{english}{equivalent} undirected graph $G' = (V,E')$, where $E'$ consists of the edges in $E$ with all multiple edges between two vertices replaced by a single edge and with all self-loops removed.}    
+\begin{ex}
+\begin{codebox}
+\Procname{\algo{Multigraph-To-Undigraph}$(\id{Adj})$}
+    \li Create an array $A$ having length $|V|$ 
+    \li \For each linked-list \id{Adj}[i]\Do
+    \li $\func{init}(A)$ \Comment initialize all element to \const{false}
+    \li \For each element $j$ of \id{Adj}[i] \Do 
+    \li $e = \id{Adj[i][j]}$
+    \li \If $e == i$ \Comment remove loop \Then 
+    \li \attrib{Adj[i]}{remove(j)} 
+    \li \Else 
+    \li \If $A[e] == \const{true}$ \Comment remove multiple edge \Then
+    \li \attrib{Adj[i]}{remove(j)} 
+    \li \Else 
+    \li $A[e] \gets \const{true}$\End
+    \End \End
+\end{codebox}
+\end{ex}
+\descitem{22.1-5} \textit{The \textbf{square} of a directed graph $G = (V, E)$ is the graph $G^2 = (V,E^2)$ such that $(u,v) \in E^2$   if and only if $G$ contains a path with at most two edges between $u$ and $v$. Describe efficient algorithms for computing $G^2$ from $G$ for both the adjacency-list and adjacency-matrix representations of $G$. Analyze the running times of your algorithms.}    
+\begin{ex}
+Dans le cas de matrice adjacente, on peut savoir l'existence d'une arrête en temps constant. Pour vérifier qu'il existe une arrête $(u,w) \in G^2$, on cherche toute paire d'arrête $(u,v)$ avec $v$ le sommet intermédiaire, puis en cas d'existence de $(u,v_0) \in G$, on cherche toute paire d'arrête $(v_0,w) \in G$. D'une telle manière, l'algorithme prend $\Theta(E^3)$.
+\begin{codebox}
+\Procname{\algo{Square-of-Adj-Matrix}$(M)$}
+\li Create a matrix $M_2$ which have the same dimension of $M$
+\li \For each node $i$ in $M$ \Do
+  \li \For each node $j$ in $M[i]$ \Do
+    \li \If $M[i][j]==1$ \Then
+      \li \For each element $k$ in $M[j]$ \Do
+        \li \If $M[i][k] == 1$ \Then
+          \li $M_2[i][k] \gets 1$ 
+        \End
+        \li $M_2[i][k] \gets 1$ 
+      \End 
+    \End 
+  \End
+\End
+\end{codebox}
+
+\begin{codebox}
+\Procname{\algo{Square-of-Adj-List}$(\id{Adj})$}
+\li Create a new adjacency-list \id{newAdj}
+\li \For each linked-list $i$ of $\id{Adj}$ \Do 
+    \li \For each element $j$ of $\id{Adj}[i]$ \Do
+        \li $\attrib{newAdj[i]}{append}(j)$ \Comment Add 1-length path
+        \li \For each element $k$ of $\id{Adj}[j]$ \Do
+            \li $\attrib{newAdj[i]}{append}(k)$ \Comment Add 2-length path
+        \End
+    \End
+\end{codebox}
+\end{ex}
+\descitem{22.1-6} \textit{Most graph algorithms that take an adjacency-matrix representation as input require time $\Omega(V^2)$, but there are some exceptions. Show how to determine whether a directed graph $G$ contains a universal sink—a vertex with in-degree jV j  1 and out-degree 0—in time O.V /, given an adjacency matrix for G.}    
+\descitem{22.1-7} \textit{}    
+\descitem{22.1-8} \textit{}    
+
+
+\end{description}
