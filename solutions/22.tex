@@ -96,8 +96,8 @@ Dans le cas de matrice adjacente, on peut savoir l'existence d'une arrête en te
 \begin{codebox}
 \Procname{\algo{Square-of-Adj-Matrix}$(M)$}
 \li Create a matrix $M_2$ which have the same dimension of $M$
-\li \For each node $i$ in $M$ \Do
-  \li \For each node $j$ in $M[i]$ \Do
+\li \For each vertex $i$ in $M$ \Do
+  \li \For each vertex $j$ in $M[i]$ \Do
     \li \If $M[i][j]==1$ \Then
       \li \For each element $k$ in $M[j]$ \Do
         \li \If $M[i][k] == 1$ \Then
@@ -109,7 +109,7 @@ Dans le cas de matrice adjacente, on peut savoir l'existence d'une arrête en te
   \End
 \End
 \end{codebox}
-
+%TODO:add explanation
 \begin{codebox}
 \Procname{\algo{Square-of-Adj-List}$(\id{Adj})$}
 \li Create a new adjacency-list \id{newAdj}
@@ -122,9 +122,36 @@ Dans le cas de matrice adjacente, on peut savoir l'existence d'une arrête en te
     \End
 \end{codebox}
 \end{ex}
-\descitem{22.1-6} \textit{Most graph algorithms that take an adjacency-matrix representation as input require time $\Omega(V^2)$, but there are some exceptions. Show how to determine whether a directed graph $G$ contains a universal sink—a vertex with in-degree jV j  1 and out-degree 0—in time O.V /, given an adjacency matrix for G.}    
-\descitem{22.1-7} \textit{}    
-\descitem{22.1-8} \textit{}    
+\descitem{22.1-6} \textit{Most graph algorithms that take an adjacency-matrix representation as input require time $\Omega(V^2)$, but there are some exceptions. Show how to determine whether a directed graph $G$ contains a \textbf{universal sink} -- a vertex with in-degree $|V| - 1$ and out-degree $0$ -- in time $O(V)$, given an adjacency matrix for $G$.}    
 
+\begin{exrev}
+On cherche, dans la matrice adjacente, une colonne qui contient $|V|-1|$ 1. De cette manière, il suffit de parcourir qu'une fois le graphe entier, d'où la complexité $O(V)$.
+
+%TODO:write the algo
+\begin{codebox}
+\Procname{\algo{Square-of-Adj-List}$(\id{M})$}
+\li \For each vertex in 
+\end{codebox}
+\end{exrev}
+%TODO:refer TD
+\descitem{22.1-7} \textit{The \textbf{incidence matrix} of a directed graph $G = (V,E)$ with no self-loops is a $|V| \times |E|$ matrix $B = b_{ij}$ such that}
+\[
+    b_{ij} = \left\{
+    \begin{array}{ll}
+        -1 & \text{if edge }$j$\text{ leaves vertex } $i$,\\
+        1 & \text{if edge }$j$\text{ enters vertex } $i$,\\
+        0 & \text{otherwise.}
+    \end{array}
+    \right.
+\]
+Describe what the entries of the matrix product $BB^T$ represent, where $B^T$ is the transpose of $B$.
+%TODO:see hash table chapter
+\descitem{22.1-8} \textit{Suppose that instead of a linked list, each array entry \id{Adj}[u] is a hash table containing the vertices $v$ for which $(u,v) \in E$. If all edge lookups are equally likely, what is the expected time to determine whether an edge is in the graph? What disadvantages does this scheme have? Suggest an alternate data structure for each edge list that solves these problems. Does your alternative have disadvantages compared to
+the hash table?}    
+\begin{exrev}
+
+\end{exrev}
 
 \end{description}
+
+\subsection{Breadth-first search}
