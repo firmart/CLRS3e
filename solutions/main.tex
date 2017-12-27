@@ -1,6 +1,6 @@
 %%% Basic packages %%%
 
-\documentclass[12pt,a4paper]{article} 
+\documentclass[12pt]{article} 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
@@ -84,7 +84,6 @@
     urlcolor={blue!80!black}
 }
 \usepackage{graphicx} % for going to include figure
-\usepackage{mwe}
 
 %%%%% Table %%%%%
 
@@ -92,8 +91,7 @@
 
 %%% Diagrams %%%
 
-\usepackage[linecolor = myblue , tickscolor = orange , emptycolor =
-yellow , filledcolor = myblue]{progressbar} 
+\usepackage[linecolor = myblue , tickscolor = orange , emptycolor = yellow , filledcolor = myblue]{progressbar} 
 
 %%% Commons Macros  %%%
 
@@ -181,6 +179,9 @@ yellow , filledcolor = myblue]{progressbar}
 
   \let\oldsection\section% Store \section in \oldsection
   \renewcommand{\section}{\clearpage\oldsection}% Insert \clearpage before every \section
+
+  \let\oldpart\part% Store \part in \oldpart
+  \renewcommand{\part}{\clearpage\oldpart}% Insert \clearpage before every \part
 
   \newenvironment{ex}{\refstepcounter{ex}\paragraph{\textcolor{myblue}{Solution :}}\mbox{}}{\mbox{}\hfill$\blacksquare$}
   \newenvironment{exrev}{\refstepcounter{exrev}\paragraph{\textcolor{red}{Solution :}}\mbox{}}{\mbox{}\hfill$\blacksquare$}

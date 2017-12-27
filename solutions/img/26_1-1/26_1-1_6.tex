@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata, positioning}
+\usepackage{xcolor}
+\definecolor{myblue}{RGB}{0,0,127} % navy blue
+
+
+\begin{document}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm, semithick]
+  \tikzstyle{every state}=[fill=myblue,draw=none,text=white]
+
+  \node[state]         (S)              {$s$};
+  \node[state]         (T) [right of=S] {$t$};
+
+  \path[line width=1.0mm] (S) edge [above] node {$13/13$} (T);
+\end{tikzpicture}
+\end{document}

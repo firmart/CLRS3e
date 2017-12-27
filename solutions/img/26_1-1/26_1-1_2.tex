@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usepackage{xcolor}
+\definecolor{myblue}{RGB}{0,0,127} % navy blue
+
+
+\begin{document}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=5.8cm, semithick]
+  \tikzstyle{every state}=[fill=myblue,draw=none,text=white]
+
+  \node[state]         (A)              {$u$};
+  \node[state]         (C) [right of=A] {$v$};
+
+  \path (A) edge              node[above] {$c(u,v) = \min(c(u,x),c(u,v))$} node[below] {$f(u,v)$} (C);
+\end{tikzpicture}
+\end{document}
