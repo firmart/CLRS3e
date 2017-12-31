@@ -183,10 +183,15 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 
     \begin{ex}
       \begin{figure}[H]
+          \definecolor{merge}{RGB}{230, 211, 221}
         \centering
           \includegraphics[scale=1]{img/2_3-1/2_3-1.pdf}
-        \caption{Tri fusion sur le tableau $A =\langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$.} 
+        \caption{Tri fusion sur le tableau $A =\langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$.\\
+          \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=blue!20, line width=3pt] (0,0) -- (0.4,0);}} éléments de droite
+          \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=red!20, line width=3pt] (0,0) -- (0.4,0); }} éléments de gauche
+          \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=merge, line width=3pt] (0,0) -- (0.4,0);  }} éléments fusionnés (ordonné).}
       \end{figure}
+      
     \end{ex}
 
   \descitem{2.3-2} {\itshape Rewrite the \textsc{Merge} procedure so that it does not use sentinels, instead stopping once either array $L$ or $R$ has had all its elements copied back to $A$ and then copying the remainder of the other array back into $A$.}
