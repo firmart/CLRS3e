@@ -20,10 +20,12 @@ int main() {
     char c1 = 's';
     char c2 = 'u';
     char c3 = 'v';
+    char c4 = 'w';
     char* c;
     printf("enqueue c1='%c'\n", c1);queue_enqueue(q2, &c1);
     printf("enqueue c2='%c'\n", c2);queue_enqueue(q2, &c2);
     printf("enqueue c3='%c'\n", c3);queue_enqueue(q2, &c3);
+    printf("enqueue c4='%c'\n", c4);queue_enqueue(q2, &c4);
     c = queue_dequeue(q2); printf("dequeue c='%c'\n", *c);
     c = queue_dequeue(q2); printf("dequeue c='%c'\n", *c);
     c = queue_dequeue(q2); printf("dequeue c='%c'\n", *c);

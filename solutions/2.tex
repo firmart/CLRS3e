@@ -6,9 +6,42 @@
 
   \descitem{2.1-1} {\itshape Using Figure 2.2 as a model, illustrate the operation of {\sc Insertion-Sort} on the array $A = \langle 31, 41, 59, 26, 41, 58 \rangle$.}
 
-    \begin{exrev}
-      
-    \end{exrev}
+    \begin{ex}
+      \begin{figure}[H]
+        \centering
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_1.pdf}
+          \caption{}\label{fig:2_1-1_1}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_2.pdf}
+          \caption{}\label{fig:2_1-1_2}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_3.pdf}
+          \caption{}\label{fig:2_1-1_3}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_4.pdf}
+          \caption{}\label{fig:2_1-1_4}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_5.pdf}
+          \caption{}\label{fig:2_1-1_5}
+        \end{subfigure}
+        \begin{subfigure}[t]{.45\textwidth}
+          \centering
+          \includegraphics[scale=1]{img/2_1-1/2_1-1_6.pdf}
+          \caption{}\label{fig:2_1-1_6}
+        \end{subfigure}
+        \caption{Tri par insertion sur le tableau $A = \langle 31, 41, 59, 26, 41, 58 \rangle$.} 
+      \end{figure}
+    \end{ex}
 
 \descitem{2.1-2} {\itshape Rewrite the {\scshape Insertion-Sort} procedure to sort into non-increasing instead of non-decreasing order.}
     \begin{ex}
@@ -148,9 +181,13 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 \begin{description}
   \descitem{2.3-1} {\itshape Using Figure 2.4 as a model, illustrate the operation of merge sort on the array $A =\\ \langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$}.
 
-    \begin{exrev}
-      
-    \end{exrev}
+    \begin{ex}
+      \begin{figure}[H]
+        \centering
+          \includegraphics[scale=1]{img/2_3-1/2_3-1.pdf}
+        \caption{Tri fusion sur le tableau $A =\langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$.} 
+      \end{figure}
+    \end{ex}
 
   \descitem{2.3-2} {\itshape Rewrite the \textsc{Merge} procedure so that it does not use sentinels, instead stopping once either array $L$ or $R$ has had all its elements copied back to $A$ and then copying the remainder of the other array back into $A$.}
 
@@ -177,12 +214,12 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
     \end{ex}
 
   \descitem{2.3-3} {\itshape Use mathematical induction to show that when $n$ is an exact power of $2$, the solution of the recurrence 
-    $$T(n) = \left\{
+    \[T(n) = \left\{
       \begin{array}{ll}
         2 & \text{ if } n = 2,\\
         2T(n/2)+n & \text{ if }n = 2^k, \text{ for } k> 1\\
       \end{array}
-    \right.$$
+    \right.\]
   is $T(n) = n\lg n$.}
 
     \begin{ex}
@@ -200,12 +237,12 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 insertion sort.}
 
 \begin{ex}
-  $$T(n) = \left\{
+  \[T(n) = \left\{
     \begin{array}{ll}
     \Theta(1) & \text {if } n = 1\\
       T(n-1) + \Theta(n) & \text{otherwise}\\ 
     \end{array}
-  \right.$$
+  \right.\]
 \end{ex}
 
 \descitem{2.3-5} {\itshape Referring back to the searching problem (see Exercise 2.1-3), observe that if the sequence $A$ is sorted, we can check the midpoint of the sequence against and eliminate half of the sequence from further consideration. The {\bfseries binary search} algorithm repeats this procedure, halving the size of the remaining portion of the sequence each time. Write pseudocode, either iterative or recursive, for binary
@@ -225,12 +262,12 @@ insertion sort.}
     \end{codebox}
 
     Calculons le temps d'ex\'ecution au cas le plus d\'efavorable. On a :
-    $$T(n) = \left\{ 
+    \[T(n) = \left\{ 
       \begin{array}{ll}
         \Theta(1) & \text{if } n = 1\\
         T(n/2) + \Theta(1) & \text{otherwise}
       \end{array}
-    \right..$$
+    \right..\]
     Supposons que $n = 2^p$, alors par la m\'ethode d'arbre r\'ecursive, on a un arbre d\'eg\'en\'er\'e de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par une constante $c$. Il suffit donc de calculer 
     \begin{align*}
       \sum_{i=0}^{p}c &= (p+1)c\\

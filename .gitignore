@@ -3,11 +3,14 @@
 
 # Unignore all with extensions
 !*.*
+*.png
+*.doxygen
 
 # Unignore all dirs
 !*/
 
 !Makefile
+**/doc/latex/*
 
 # Created by https://www.gitignore.io/api/c,vim,latex
 

@@ -7,6 +7,7 @@
  */
 
 #include "queue.h"
+#include <stdio.h>
 
 /**
  * Determinate the emptiness of a queue.

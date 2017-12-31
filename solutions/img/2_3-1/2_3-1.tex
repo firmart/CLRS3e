@@ -1,0 +1,148 @@
+%% code from https://tex.stackexchange.com/questions/118492/typesetting-sorting-diagrams
+\documentclass[12pt]{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shadows}
+\usetikzlibrary{positioning}
+
+\newlength{\OUmatrixSepWidth}
+\newcommand{\OUsetMatrixSepWidth}[1]{%
+  \settowidth{\OUmatrixSepWidth}{#1}%
+}
+
+\renewcommand{\familydefault}{\sfdefault}
+\thispagestyle{empty}
+
+\pgfdeclarelayer{back}
+\pgfsetlayers{back,main}
+\makeatletter
+\pgfkeys{%
+  /tikz/on layer/.code={
+    \pgfonlayer{#1}\begingroup
+    \aftergroup\endpgfonlayer
+    \aftergroup\endgroup
+  },
+  /tikz/node on layer/.code={
+    \pgfonlayer{#1}\begingroup
+    \expandafter\def\expandafter\tikz@node@finish\expandafter{\expandafter\endgroup\expandafter\endpgfonlayer\tikz@node@finish}%
+  },
+}
+\makeatother
+
+\begin{document}
+\Large  
+
+  \OUsetMatrixSepWidth{3em}
+
+   \definecolor{merge}{RGB}{230, 211, 221}
+
+  \begin{tikzpicture}
+    [myInnerBlock/.style={rectangle,draw,align=center}
+    ,myInnerBlockL/.style={rectangle,draw,align=center,fill=red!20}
+    ,myInnerBlockR/.style={rectangle,draw,align=center,fill=blue!20}
+    ,myInnerBlockM/.style={rectangle,draw,align=center,fill=merge}
+    ,myRectangleSplit/.style={rectangle split,rectangle split horizontal,draw,rectangle split part align={center,base}} % requires library shapes.multipart
+    ,line/.style={draw,thick,red,-triangle 60}
+    ]
+    \matrix (m)[column sep=0.3\OUmatrixSepWidth, row sep=0.5\OUmatrixSepWidth]
+    {
+      % row 1
+      \node[myRectangleSplit,rectangle split allocate boxes=8,rectangle split parts=8,rectangle split part fill={red!20,red!20,red!20,red!20,blue!20,blue!20}] (unsorted) 
+      { 3\nodepart{two}41\nodepart{three}52\nodepart{four}26\nodepart{five}38\nodepart{six}57\nodepart{seven}9\nodepart{eight}49};\\[2ex]
+      % row 2
+      \node (r2ac) {}; 
+      \node[myInnerBlockR,left=0.3\OUmatrixSepWidth of r2ac] (r2a5) {26}; 
+      \node[myInnerBlockR,left=0pt of r2a5] (r2a4) {52}; 
+      \node[myInnerBlockL,left=0pt of r2a4] (r2a3) {41}; 
+      \node[myInnerBlockL,left=0pt of r2a3] (r2a2) {3}; 
+      \node[myInnerBlockL,right=0.3\OUmatrixSepWidth of r2ac] (r2a6) {38}; 
+      \node[myInnerBlockL,right=0pt of r2a6] (r2a7) {57}; 
+      \node[myInnerBlockR,right=0pt of r2a7] (r2a8) {9}; 
+      \node[myInnerBlockR,right=0pt of r2a8] (r2a9) {49}; 
+      \\[2ex]
+      % row 3
+      \node (r3ac) {}; 
+      \node[myInnerBlockR,left=0.3\OUmatrixSepWidth of r3ac] (r3a5) {26}; 
+      \node[myInnerBlockL,left=0pt of r3a5] (r3a4) {52}; 
+      \node[myInnerBlockR,left=0.3\OUmatrixSepWidth of r3a4] (r3a3) {41}; 
+      \node[myInnerBlockL,left=0pt of r3a3] (r3a2) {3}; 
+      \node[myInnerBlockL,right=0.3\OUmatrixSepWidth of r3ac] (r3a6) {38}; 
+      \node[myInnerBlockR,right=0pt of r3a6] (r3a7) {57}; 
+      \node[myInnerBlockL,right=0.3\OUmatrixSepWidth of r3a7] (r3a8) {9}; 
+      \node[myInnerBlockR,right=0pt of r3a8] (r3a9) {49}; 
+      \\[2ex]
+      % row 4
+      \node (r4ac) {}; 
+      \node[myInnerBlock,left=0.3\OUmatrixSepWidth of r4ac] (r4a5) {26}; 
+      \node[myInnerBlock,left=0.3\OUmatrixSepWidth of r4a5] (r4a4) {52}; 
+      \node[myInnerBlock,left=0.3\OUmatrixSepWidth of r4a4] (r4a3) {41}; 
+      \node[myInnerBlock,left=0.3\OUmatrixSepWidth of r4a3] (r4a2) {3}; 
+      \node[myInnerBlock,right=0.3\OUmatrixSepWidth of r4ac] (r4a6) {38}; 
+      \node[myInnerBlock,right=0.3\OUmatrixSepWidth of r4a6] (r4a7) {57}; 
+      \node[myInnerBlock,right=0.3\OUmatrixSepWidth of r4a7] (r4a8) {9}; 
+      \node[myInnerBlock,right=0.3\OUmatrixSepWidth of r4a8] (r4a9) {49}; 
+      \\[2ex]
+      % row 5
+      \node (r5ac) {}; 
+      \node[myInnerBlockM,left=0.3\OUmatrixSepWidth of r5ac] (r5a5) {52}; 
+      \node[myInnerBlockM,left=0pt of r5a5] (r5a4) {26}; 
+      \node[myInnerBlockM,left=0.3\OUmatrixSepWidth of r5a4] (r5a3) {41}; 
+      \node[myInnerBlockM,left=0pt of r5a3] (r5a2) {3}; 
+      \node[myInnerBlockM,right=0.3\OUmatrixSepWidth of r5ac] (r5a6) {38}; 
+      \node[myInnerBlockM,right=0pt of r5a6] (r5a7) {57}; 
+      \node[myInnerBlockM,right=0.3\OUmatrixSepWidth of r5a7] (r5a8) {9}; 
+      \node[myInnerBlockM,right=0pt of r5a8] (r5a9) {49}; 
+      \\[2ex]
+      % row 6
+      \node (r6ac) {}; 
+      \node[myInnerBlockM,left=0.3\OUmatrixSepWidth of r6ac] (r6a5) {52}; 
+      \node[myInnerBlockM,left=0pt of r6a5] (r6a4) {41}; 
+      \node[myInnerBlockM,left=0 of r6a4] (r6a3) {26}; 
+      \node[myInnerBlockM,left=0pt of r6a3] (r6a2) {3}; 
+      \node[myInnerBlockM,right=0.3\OUmatrixSepWidth of r6ac] (r6a6) {9}; 
+      \node[myInnerBlockM,right=0pt of r6a6] (r6a7) {38}; 
+      \node[myInnerBlockM,right=0pt of r6a7] (r6a8) {49}; 
+      \node[myInnerBlockM,right=0pt of r6a8] (r6a9) {57}; 
+      \\[2ex]
+      % row 7
+      \node[myRectangleSplit,rectangle split allocate boxes=8,rectangle split parts=8, fill=merge] (sorted) 
+      { 3\nodepart{two}9\nodepart{three}26\nodepart{four}38\nodepart{five}41\nodepart{six}49\nodepart{seven}52\nodepart{eight}57};\\[2ex]
+    }; 
+
+    \draw[-latex] (unsorted.four south) -- (r2a3.north east) node[anchor=south east]{\small split};
+    \draw[-latex] (unsorted.five south) -- (r2a7.north east) node[anchor=south west]{\small split};
+
+    \draw[-latex] (r2a3.south east) -- (r3a2.north east) node[anchor=south east]{\small split};
+    \draw[-latex] (r2a3.south east) -- (r3a4.north east) node[anchor=south west]{\small split};
+    \draw[-latex] (r2a7.south east) -- (r3a6.north east) node[anchor=south east]{\small split};
+    \draw[-latex] (r2a7.south east) -- (r3a8.north east) node[anchor=south west]{\small split};
+
+    \draw[-latex] (r3a2.south east) -- (r4a2.north) ;
+    \draw[-latex] (r3a2.south east) -- (r4a3.north) ;
+    \draw[-latex] (r3a4.south east) -- (r4a4.north) ;
+    \draw[-latex] (r3a4.south east) -- (r4a5.north) ;
+    \draw[-latex] (r3a6.south east) -- (r4a6.north) ;
+    \draw[-latex] (r3a6.south east) -- (r4a7.north) ;
+    \draw[-latex] (r3a8.south east) -- (r4a8.north) ;
+    \draw[-latex] (r3a8.south east) -- (r4a9.north) ;
+
+    \draw[-latex] (r4a2.south) -- (r5a2.north east) node[anchor=south east]{\small merge} ;
+    \draw[-latex] (r4a3.south) -- (r5a2.north east) ;
+    \draw[-latex] (r4a4.south) -- (r5a4.north east) node[anchor=south east]{\small merge} ;
+    \draw[-latex] (r4a5.south) -- (r5a4.north east) ;
+    \draw[-latex] (r4a6.south) -- (r5a6.north east) node[anchor=south east]{\small merge} ;
+    \draw[-latex] (r4a7.south) -- (r5a6.north east) ;
+    \draw[-latex] (r4a8.south) -- (r5a8.north east) node[anchor=south east]{\small merge} ;
+    \draw[-latex] (r4a9.south) -- (r5a8.north east) ;
+
+    \draw[-latex] (r5a2.south east) -- (r6a3.north east) node[anchor=south]{\small merge} ;
+    \draw[-latex] (r5a4.south east) -- (r6a3.north east) ;
+    \draw[-latex] (r5a6.south east) -- (r6a7.north east) node[anchor=south]{\small merge} ;
+    \draw[-latex] (r5a8.south east) -- (r6a7.north east) ;
+
+    \draw[-latex] (r6a3.south east) -- (sorted.five north) node[anchor=south]{\small merge} ;
+    \draw[-latex] (r6a7.south east) -- (sorted.five north) ;
+  \end{tikzpicture}
+\end{document} 

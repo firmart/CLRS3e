@@ -39,6 +39,7 @@ typedef struct graph_t {
 } graph_t;
 
 typedef struct info_t {
+    int src;
     int* pred;
     int* dist;
 } info_t;
@@ -50,7 +51,9 @@ void graph_adj_list_print(graph_t* g);
 void graph_delete_adj_ele(graph_t* g, int u, int v);
 void graph_destruct(graph_t* g);
 void graph_dot_output(graph_t* g, char* filename);
+void graph_search_dot_output(graph_t* g, info_t* info, char* filename);
 int is_adj(graph_t* g, int u, int v);
 info_t* bfs(graph_t* g, int src);
+void info_destruct(info_t* info);
 
 #endif  //GRAPHS_H

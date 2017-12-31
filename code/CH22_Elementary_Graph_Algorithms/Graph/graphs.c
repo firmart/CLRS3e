@@ -194,7 +194,7 @@ void graph_dot_output(graph_t* g, char* filename) {
     pfile = fopen(filename, "w");
     if (pfile == NULL) perror ("Error opening file");
     if (g->type == DIGRAPH) {
-        fprintf(pfile, "digraph g {\nnode [shape=\"circle\"];\n");
+        fprintf(pfile, "digraph g {\nnode [shape=\"circle\"];\ngraph [overlap=false, concentrate=true];\n");
         for(int i = 0; i < g->n; i++) {
             if(g->vertex[i]->degree.out == 0) fprintf(pfile, "%d;\n", i);
             for(int j = 0; j < g->vertex[i]->degree.out ; j++) {
@@ -202,7 +202,7 @@ void graph_dot_output(graph_t* g, char* filename) {
             }
         }
     } else if (g->type == UNDIGRAPH) {
-        fprintf(pfile, "graph g {\nnode [shape=\"circle\"];\n");
+        fprintf(pfile, "graph g {\nnode [shape=\"circle\"];\ngraph [overlap=false, concentrate=true];\n");
         for(int i = 0; i < g->n; i++) {
             if(g->vertex[i]->degree.out == 0) fprintf(pfile, "%d;\n", i);
             for(int j = 0; j < g->vertex[i]->degree.out ; j++) {
@@ -214,53 +214,95 @@ void graph_dot_output(graph_t* g, char* filename) {
     }
     fprintf(pfile, "}\n");
     fclose(pfile);
-    //system(strcat(strcat(strcat(strcat("dot ", filename),"-Tps -o "),filename),".ps"));
 }
 
-int* inttoptr(int i){
+void graph_search_dot_output(graph_t* g, info_t* info, char* filename) {
+    FILE* pfile;
+    pfile = fopen(filename, "w");
+    if (pfile == NULL) perror ("Error opening file");
+    if (g->type == DIGRAPH) {
+        fprintf(pfile, "digraph g {\nnode [shape=\"circle\"];\ngraph [overlap=false, concentrate=true];\n");
+        fprintf(pfile, "%d [style=filled fillcolor=red, peripheries=2];\n", info->src);
+        for(int i = 0; i < g->n; i++) {
+            if(g->vertex[i]->degree.out == 0) fprintf(pfile, "%d;\n", i);
+            for(int j = 0; j < g->vertex[i]->degree.out ; j++) {
+                if(info->pred[g->vertex[i]->adj_list[j]] == i) {
+                    fprintf(pfile, "%d -> %d[color=blue];\n", i, g->vertex[i]->adj_list[j]);
+                    fprintf(pfile, "%d [style=filled fillcolor=red];\n", g->vertex[i]->adj_list[j]);
+                } else fprintf(pfile, "%d -> %d;\n", i, g->vertex[i]->adj_list[j]);
+            }
+        }
+    } else if (g->type == UNDIGRAPH) {
+        fprintf(pfile, "graph g {\nnode [shape=\"circle\"];\ngraph [overlap=false,concentrate=true];\n");
+        fprintf(pfile, "%d [style=filled fillcolor=red, peripheries=2];\n", info->src);
+        for (int i = 0; i < g->n ; i++) {
+            if(info->pred[i] == -1) continue;
+            fprintf(pfile, "%d -- %d[color=blue];\n", info->pred[i], i);
+            fprintf(pfile, "%d [style=filled fillcolor=red];\n", i);
+        }
+        for (int i = 0; i < g->n ; i++) {
+            if(g->vertex[i]->degree.out == 0) fprintf(pfile, "%d;\n", i);
+            for(int j = 0; j < g->vertex[i]->degree.out ; j++) {
+                if(i <= g->vertex[i]->adj_list[j]) {
+                    if (info->pred[i] == g->vertex[i]->adj_list[j]) continue;
+                    else fprintf(pfile, "%d -- %d;\n", i, g->vertex[i]->adj_list[j]);
+                }
+            }
+        }
+    }
+    fprintf(pfile, "}\n");
+    fclose(pfile);
+}
+
+static int* inttoptr(int i) {
     int* ptr = malloc(sizeof(int));
+    assert(ptr);
     *ptr = i;
     return ptr;
 }
 
 info_t* bfs(graph_t* g, int src) {
+    assert(src >= 0 && src < g->n);
     int* color = malloc(g->n * sizeof(int));
     int* pred  = malloc(g->n * sizeof(int));
     int* dist  = malloc(g->n * sizeof(int));
     assert(color && pred && dist);
     for(int i = 0; i < g->n; i++) {
-        color[i] = 0;
-        pred[i] = -1;
-        dist[i] = g->n + 1;
+        color[i] = 0;       /* white                 */
+        pred[i] = -1;       /* no predecessor        */
+        dist[i] = g->n + 1; /* no reachable distance */
     }
+    color[src] = 1;
+    dist[src] = 0;          /* dist(src,src) = 0     */
+    /* int-queue with n slots */
     queue_t* q = queue_create(sizeof(int), g->n);
-    assert(q);
-    int i = src;
-    for (int j = 0; j < g->n; j++) {
-        if (color[i] == 0) {
-            color[i] = 1;
-            dist[i] = 0;
-            pred[i] = -1;
-            queue_enqueue(q, inttoptr(i));
-            while(!queue_isempty(q)) {
-                int* u = queue_dequeue(q);
-                for(int k = 0; k < g->vertex[*u]->degree.out; k++) {
-                    if (color[k] == 0) {
-                        color[k] = 1;
-                        dist[k] = dist[*u] + 1;
-                        pred[k] = *u;
-                        queue_enqueue(q, inttoptr(k));
-                    }
-                }
-                color[*u] = 2;
+    queue_enqueue(q, inttoptr(src));
+    while(!queue_isempty(q)) {
+        int* u = queue_dequeue(q);
+        for(int i = 0; i < g->vertex[*u]->degree.out; i++) {
+            int v = g->vertex[*u]->adj_list[i];
+            if (color[v] == 0) {
+                color[v] = 1; /* gray */
+                dist[v] = dist[*u] + 1;
+                pred[v] = *u;
+                queue_enqueue(q, inttoptr(v));
             }
         }
-        i = j;
+        color[*u] = 2; /* black */
+        free(u);
     }
+    queue_destruct(q);
     free(color);
     info_t* info = malloc(sizeof(info_t));
+    assert(info);
+    info->src = src;
     info->dist = dist;
     info->pred = pred;
-    queue_destruct(q);
     return info;
+}
+
+void info_destruct(info_t* info) {
+    free(info->dist);
+    free(info->pred);
+    free(info);
 }
