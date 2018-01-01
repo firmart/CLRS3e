@@ -131,7 +131,7 @@
       \li $\attrib{Q}{head} \gets \const{Nil}$ \End
     \li \Return \id{e}
 \end{codebox}
-    \item \footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{code/CH10_Elementary_Data_Structures/Queue/}.}
+    \item \footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Queue/}.}
     À la place de $\attrib{Q}{head}$ et $\attrib{Q}{tail}$, on utilise $\attrib{Q}{front}$ et $\attrib{Q}{count}$. $\attrib{Q}{front}$ joue le même rôle que $\attrib{Q}{tail}$. L'emplacement de $\attrib{Q}{head}$ peut se déduire à partir de l'identité :
         \[\attrib{Q}{head} + \attrib{Q}{count}\equiv \attrib{Q}{tail}\pmod{\attrib{Q}{length}}.\]
     Dans ce cas, la file est vide si $\attrib{Q}{count} = 0$ et pleine si $\attrib{Q}{count} = \attrib{Q}{length}$. 
@@ -156,7 +156,7 @@
 \end{ex}
 \descitem{10.1-5} \textit{Whereas a stack allows insertion and deletion of elements at only one end, and a queue allows insertion at one end and deletion at the other end, a \textbf{deque} (double-ended queue) allows insertion and deletion at both ends. Write four $O(1)$-time procedures to insert elements into and delete elements from both ends of a deque implemented by an array.}
 \begin{ex}
-   On reprend les algorithmes \textsc{Enqueue-With-Counter} et \textsc{Dequeue-With-Counter} et les attribues définies. Les algorithmes suivantes complètent une file à une \textit{deque}.\footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{code/CH10_Elementary_Data_Structures/Deque/}.}
+   On reprend les algorithmes \textsc{Enqueue-With-Counter} et \textsc{Dequeue-With-Counter} et les attribues définies. Les algorithmes suivantes complètent une file à une \textit{deque}.\footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Deque/}.}
 \begin{codebox}
 \Procname{\algo{Enqueue-At-Other-End}$(\id{Q}, \id{e})$}
     \li \If $\attrib{Q}{count}\isequal\attrib{Q}{length}$ \Then
