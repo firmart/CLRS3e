@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
     }
     graph_adj_list_print(g);
     info_t* info = bfs(g, 0);
-    for(int i; i < g->n; i++) {
+    for(int i = 0; i < g->n; i++) {
         printf("%d <- %d, dist[%d]=%d\n", i, info->pred[i], i, info->dist[i]);
     }
     graph_search_dot_output(g, info, "out");

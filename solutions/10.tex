@@ -160,14 +160,14 @@
 \begin{codebox}
 \Procname{\algo{Enqueue-At-Other-End}$(\id{Q}, \id{e})$}
     \li \If $\attrib{Q}{count}\isequal\attrib{Q}{length}$ \Then
-        \li \Error "The queue is full : failed to enqueue." \End
+        \li \Error "The deque is full : failed to enqueue." \End
     \li  $Q[(\attrib{Q}{front} - (\attrib{Q}{count} + 1) + \attrib{Q}{length}) \bmod \attrib{Q}{length}] \gets e$ 
     \li $\attrib{Q}{count} = \attrib{Q}{count}+1$
 \end{codebox}
 \begin{codebox}
 \Procname{\algo{Dequeue-At-Other-End}$(\id{Q})$}
     \li \If $\attrib{Q}{count}\isequal0$ \Then
-        \li \Error "The queue is empty: failed to dequeue." \End
+        \li \Error "The deque is empty : failed to dequeue." \End
     \li  $\attrib{Q}{front} \gets (\attrib{Q}{front} -1 + \attrib{Q}{length}) \bmod \attrib{Q}{length}$
     \li  $\id{e} \gets Q[\attrib{Q}{front}]$ 
     \li  $\attrib{Q}{count} = \attrib{Q}{count}-1$
@@ -183,4 +183,13 @@
 \subsection{Linked lists}
 \label{sub:linked_lists}
 
-
+\begin{description}
+    \descitem{10.2-1} \textit{Can you implement the dynamic-set operation \proc{Insert} on a singly linked list in $O(1)$ time ? How about \proc{Delete} ?}
+    \descitem{10.2-2} \textit{Implement a stack using a singly linked list $L$. The operations \proc{Push} and \proc{Pop} should still take $O(1)$ time.}
+    \descitem{10.2-3} \textit{Implement a queue by a singly linked list $L$. The operations \proc{Enqueue} and \proc{Dequeue} should still take $O(1)$ time.}
+    \descitem{10.2-4} \textit{As written, each loop iteration in the \proc{List-Search'} procedure requires two tests: one for $x \neq \attrib {L}{nil}$ and one for $\attrib{x}{key} \neq k$. Show how to eliminate the test for $x \neq \attrib{L}{nil}$ in each iteration.}
+    \descitem{10.2-5} \textit{Implement the dictionary operations \proc{Insert}, \proc{Delete}, and \proc{Search} using singly linked, circular lists. What are the running times of your procedures?}
+    \descitem{10.2-6} \textit{}
+    \descitem{10.2-7} \textit{}
+    \descitem{10.2-8} \textit{}
+\end{description}

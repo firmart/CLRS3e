@@ -85,6 +85,9 @@ queue_t* queue_create(size_t width, int max_size) {
  */
 
 void queue_destruct(queue_t* q) {
+    for(int i=0; i<q->max_size;i++){
+        free(q->base[i]);
+    }
     free(q->base);
     free(q);
 }

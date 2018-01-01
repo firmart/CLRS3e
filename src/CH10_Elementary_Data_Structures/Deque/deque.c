@@ -116,6 +116,9 @@ deque_t* deque_create(size_t width, int max_size) {
  */
 
 void deque_destruct(deque_t* q) {
+    for(int i=0; i<q->max_size;i++){
+        free(q->base[i]);
+    }
     free(q->base);
     free(q);
 }

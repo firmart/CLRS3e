@@ -303,7 +303,6 @@ info_t* bfs(graph_t* g, int src) {
             }
         }
         color[*u] = 2; /* black */
-        free(u);
     }
     queue_destruct(q);
     free(color);
