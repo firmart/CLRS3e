@@ -1,4 +1,4 @@
-all: doc tst
+all: tst
 
 tst: tst.c stack.c stack.h
 	cc tst.c stack.c -o tst

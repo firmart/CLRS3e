@@ -1,4 +1,4 @@
-all: doc tst
+all: tst
 
 tst: *.c *.h
 	gcc tst.c graphs.c queue.c stack.c -g -o tst

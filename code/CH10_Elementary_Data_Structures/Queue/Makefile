@@ -1,4 +1,4 @@
-all: doc tst
+all: tst
 
 tst: tst.c queue.c queue.h
 	cc tst.c queue.c -o tst

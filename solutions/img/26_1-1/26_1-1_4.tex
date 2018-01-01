@@ -15,9 +15,9 @@
   \node[state]         (H) [right of=A] {$h$};
   \node[state]         (T) [right of=H] {$t$};
 
-  \path[line width=1.0mm] (S) edge [above] node {$13/15$} (A);
-  \path[line width=0.7mm] (A) edge [bend left, above] node {$7/7$} (H);
-  \path[line width=1.0mm] (H) edge              node {$13/20$} (T);
-  \path[line width=0.6mm] (A) edge [bend right, below] node {$6/6$} (H);
+  \path (S) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth}, above] node {$13/15$} (A);
+  \path (A) edge[preaction={draw,yellow,-,double=orange, double distance=3.5\pgflinewidth}, bend left, above] node {$7/7$} (H);
+  \path (H) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth}]             node {$13/20$} (T);
+  \path (A) edge[preaction={draw,yellow,-,double=orange, double distance=3\pgflinewidth}, bend right, below] node {$6/6$} (H);
 \end{tikzpicture}
 \end{document}

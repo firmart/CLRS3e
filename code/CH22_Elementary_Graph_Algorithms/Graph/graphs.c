@@ -183,10 +183,9 @@ void graph_delete_adj_ele(graph_t* g, int u, int v) {
 }
 
 /**
- * Output the graph g in dot format (filename.dot) and use dot compile it to filename.ps .
+ * Output the graph g in dot format (filename.dot). 
  * \param g graph
  * \param filename filename without any extension
- * \todo system call ?
  */
 
 void graph_dot_output(graph_t* g, char* filename) {
@@ -215,6 +214,13 @@ void graph_dot_output(graph_t* g, char* filename) {
     fprintf(pfile, "}\n");
     fclose(pfile);
 }
+
+/**
+ * Output the graph g with bfs/dfs edge and reachable colored in dot format (filename.dot). 
+ * \param g graph
+ * \param info search info, result of a bfs/dfs 
+ * \param filename filename without any extension
+ */
 
 void graph_search_dot_output(graph_t* g, info_t* info, char* filename) {
     FILE* pfile;
@@ -261,6 +267,14 @@ static int* inttoptr(int i) {
     return ptr;
 }
 
+/**
+ * Launch a bfs on the given graph and source vertex.
+ * \param g graph
+ * \param src source vertex
+ * \return search info which contains for each vertex the distance to the source and 
+ * the index of its predecessor if it exists (if not, info->pred[i] = -1)
+ */
+
 info_t* bfs(graph_t* g, int src) {
     assert(src >= 0 && src < g->n);
     int* color = malloc(g->n * sizeof(int));
@@ -300,6 +314,12 @@ info_t* bfs(graph_t* g, int src) {
     info->pred = pred;
     return info;
 }
+
+
+/**
+ * Free search info 
+ * \param info search info
+ */
 
 void info_destruct(info_t* info) {
     free(info->dist);

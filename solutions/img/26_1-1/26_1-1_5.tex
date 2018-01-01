@@ -15,8 +15,8 @@
   \node[state]         (H) [right of=A] {$h$};
   \node[state]         (T) [right of=H] {$t$};
 
-  \path[line width=1.0mm] (S) edge [above] node {$13/15$} (A);
-  \path[line width=0.7mm] (A) edge node {$13/13$} (H);
-  \path[line width=1.0mm] (H) edge              node {$13/20$} (T);
+  \path (S) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth}]  node {$13/15$} (A);
+  \path (A) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth}] node {$13/13$} (H);
+  \path (H) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth}]              node {$13/20$} (T);
 \end{tikzpicture}
 \end{document}

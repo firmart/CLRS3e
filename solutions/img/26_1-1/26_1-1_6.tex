@@ -13,6 +13,6 @@
   \node[state]         (S)              {$s$};
   \node[state]         (T) [right of=S] {$t$};
 
-  \path[line width=1.0mm] (S) edge [above] node {$13/13$} (T);
+  \path (S) edge[preaction={draw,yellow,-,double=orange, double distance=6.5\pgflinewidth},above] node {$13/13$} (T);
 \end{tikzpicture}
 \end{document}

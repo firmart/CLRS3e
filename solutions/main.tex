@@ -25,7 +25,7 @@
 \newlistof{algo}{toa}{\listalgoname}
 \newcommand{\algo}[1]{%
   \refstepcounter{algo}
-  \textbf{Algorithme \thealgo.}\quad\textsc{#1}
+  \textbf{Algorithme \thealgo.}\quad\proc{#1}
   \addcontentsline{toa}{algo}{\protect\numberline{\thealgo}#1}}
 
 
@@ -73,6 +73,7 @@
 %\usepackage[xindy,nopostdot,acronym]{glossaries}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{float} % for figure's option H
+\renewcommand{\ttdefault}{pbk}
 \usepackage{hyperref}
 \usepackage{caption}
 \usepackage{subcaption} % for caption of multiple figure
@@ -83,6 +84,7 @@
     citecolor={blue!50!black}, 
     urlcolor={blue!80!black}
 }
+\newcommand{\pathx}[1]{\textcolor{myblue}{\path{#1}}}
 \usepackage{graphicx} % for going to include figure
 
 %%%%% Table %%%%%
@@ -133,6 +135,7 @@
 %	\usetikzlibrary{arrows.meta}
 
 \AtBeginEnvironment{tikzpicture}{\shorthandoff{;}}
+\DeclareRobustCommand*\circled[1]{\tikz[baseline=(char.base)]{ \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
 
 %%%% Glossary %%%%
 

@@ -30,8 +30,8 @@
   \descitem{4.1-3} {\itshape Implement both the brute-force and recursive algorithms for the maximum-subarray problem on your own computer. What problem size $n_0$ gives the crossover point at which the recursive algorithm beats the brute-force algorithm? Then, change the base case of the recursive algorithm to use the brute-force algorithm whenever the problem size is less than $n_0$. Does that change the crossover point?}
     \begin{ex}
         \begin{itemize}
-          \item Environ $17$, voir le programme \cverb|tst_crossover_pt_1|.
-          \item Le {\itshape crossover point} est devenu $2$, voir le programme \cverb|tst_crossover_pt_2|.
+          \item Environ $17$. \footnote{\textit{cf.} le programme \pathx{code/CH04_Divide-and-Conquer/FindMaxSubarray/tst_crossover_pt_1}.}
+          \item Le {\itshape crossover point} est devenu $2$. \footnote{\textit{cf.} le programme \pathx{code/CH04_Divide-and-Conquer/FindMaxSubarray/tst_crossover_pt_2}.}
         \end{itemize}
     \end{ex}
 
@@ -73,14 +73,14 @@
 \subsection{Strassen’s algorithm for matrix multiplication}
 
 \begin{description}
-  \descitem{4.2-1} {\itshape Use Strassen’s algorithm to compute the matrix product $$\begin{pmatrix}
+  \descitem{4.2-1} {\itshape Use Strassen’s algorithm to compute the matrix product \[\begin{pmatrix}
       1 & 3\\
       7 & 5\\
     \end{pmatrix}
     \begin{pmatrix}
       6 & 8\\
       4 & 2\\
-    \end{pmatrix}.$$ 
+    \end{pmatrix}.\] 
   Show your work.}
 
     \begin{ex}
@@ -91,11 +91,11 @@
       6 & 8\\
       4 & 2\\
     \end{pmatrix}$, on veut calculer le produit matriciel $AB=C$.
-    On {\it divise} les matrices $A$ et $B$ en $4$ sous-matrices: $$\begin{array}{ccccc}
+    On {\it divise} les matrices $A$ et $B$ en $4$ sous-matrices: \[\begin{array}{ccccc}
       A_{11} = (1) & A_{12} = (3) & \text{et} & B_{11} = 6& B_{12} = 8\\
       A_{21} = (7) & A_{22} = (5) &&B_{21} = 4& B_{22} = 2\\
     \end{array}
-    $$ puis on effectue les calcules interm\'ediaires :
+    \] puis on effectue les calcules interm\'ediaires :
     \begin{alignat*}{7}
     S_1 &= B_{12} - B_{22} &&= 6 &\quad S_6&=B_{11} + B_{22}&&= 8\\
     S_2 &= A_{11} + A_{12} &&= 4 &\quad S_7&=A_{12} - A_{22}&&=-2\\
@@ -116,10 +116,10 @@
       C_{21} &= P_3 + P_4 = 62\\
       C_{22} &=  P_5 + P_1 - P_3 - P_7 = 66
     \end{align*}
-    D'o\`u $$C = \begin{pmatrix}
+    D'o\`u \[C = \begin{pmatrix}
       18 & 14\\
       62 & 66\\
-    \end{pmatrix}.$$
+    \end{pmatrix}.\]
     \end{ex} 
 
   \descitem{4.2-2} {\itshape Write pseudocode for Strassen’s algorithm.}

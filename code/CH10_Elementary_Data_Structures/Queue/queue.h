@@ -1,6 +1,7 @@
-#ifndef STACK_H
-#define STACK_H 
+#ifndef QUEUE_H
+#define QUEUE_H 
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 
@@ -29,7 +30,9 @@ typedef struct {
 queue_t* queue_create(size_t width, int max_size);
 void queue_destruct(queue_t* q);
 int queue_isempty(queue_t* q);
+int queue_isfull(queue_t* q);
 void* queue_dequeue(queue_t* q);
 void queue_enqueue(queue_t* q, void* e);
+void queue_int_print(queue_t* q);
 
-#endif /* ifndef STACK_H */
+#endif /* ifndef QUEUE_H */
