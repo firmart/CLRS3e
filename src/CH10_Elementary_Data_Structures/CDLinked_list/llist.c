@@ -1,5 +1,12 @@
 #include "llist.h"
 
+/**
+ * Given the size of each element and the list size, create a list.
+ * \param width size of each element
+ * \param max_size size of the list, max_size*width bytes will be reserved (definitively) for the list 
+ * \return a list initialized
+ */
+
 llist_t* llist_create(size_t width) {
     llist_t* l = malloc(sizeof(llist_t));
     assert(l);
@@ -12,6 +19,11 @@ llist_t* llist_create(size_t width) {
     return l;
 }
 
+/**
+ * Free a list.
+ * \param q a list
+ */
+
 void llist_destruct(llist_t* l) {
     lnode_t* x = l->nil->next;
     while(x != l->nil) {
@@ -23,6 +35,13 @@ void llist_destruct(llist_t* l) {
     free(l);
 }
 
+/*
+ * Given an index n, do a linear search on a list 
+ * \param l a list
+ * \param n index 
+ * \return the node of index n
+ */
+
 lnode_t* llist_lsearch(llist_t* l, int n) {
     assert (n >= 0 || n < l->count) ;
     lnode_t* x = l->nil->next;
@@ -31,6 +50,12 @@ lnode_t* llist_lsearch(llist_t* l, int n) {
     }
     return x;
 }
+
+/*
+ * Delete the node of index n
+ * \param l a list
+ * \param n index 
+ */
 
 void llist_delete(llist_t* l, int n) {
     if (l->count == 0) return ;
@@ -42,6 +67,12 @@ void llist_delete(llist_t* l, int n) {
     l->count--;
 }
 
+/*
+ * Insert in the front of a given \e node a node \e x
+ * \param node the node to prepend
+ * \param x the node to insert 
+ */
+
 static void llist_insert_ptr(lnode_t* node, lnode_t* x) {
     lnode_t* pn = node->prev;
     x->next = pn->next;
@@ -49,6 +80,14 @@ static void llist_insert_ptr(lnode_t* node, lnode_t* x) {
     pn->next = x;
     x->prev = pn;
 }
+
+/*
+ * Given an index n, insert in the front of the node n
+ * \param l a list
+ * \param n index 
+ * \param e element
+ * \return the new node of index n which be inserted
+ */
 
 lnode_t* llist_insert(llist_t* l, int n, void* e) {
     lnode_t* x = l->count == 0 ? l->nil : llist_lsearch(l, n);
@@ -59,6 +98,10 @@ lnode_t* llist_insert(llist_t* l, int n, void* e) {
     l->count++;
     return node;
 }
+
+/**
+ * Print an int list 
+ */
 
 void llist_int_print(llist_t* l) {
     printf("%d nodes : nil<->", l->count);
