@@ -14,9 +14,9 @@
  */
 
 typedef struct lnode_t {
-    struct lnode_t* prev;
-    void* data;    
-    struct lnode_t* next;
+    struct lnode_t* prev; /**< previous node */
+    void* data;           /**< data pointer */
+    struct lnode_t* next; /**< next node */
 } lnode_t;
 
 typedef struct llist_t {
