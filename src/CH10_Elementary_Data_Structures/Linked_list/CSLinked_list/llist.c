@@ -2,7 +2,7 @@
 
 /**
  * \file llist.c
- * \brief Singly linked list basic operations implementation
+ * \brief Circular Singly linked list basic operations implementation
  * \author Firmin MARTIN
  * \version 0.1
  * \date 03/01/2018
@@ -27,8 +27,17 @@ llist_t* llist_create(size_t width) {
 }
 
 /**
+ * Return pointer to the first node of the list
+ * \param l a list
+ */
+
+lnode_t* llist_head(llist_t* l) {
+    return l->nil->next;
+}
+
+/**
  * Free a list.
- * \param q a list
+ * \param l a list
  */
 
 void llist_destruct(llist_t* l) {

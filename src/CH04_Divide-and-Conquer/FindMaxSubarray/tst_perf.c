@@ -42,7 +42,7 @@ int main(int argc, char** argv){
 		arr[i] = rand() % 201 - 100;
 	} 	
 	
-	print_arr(arr, n);
+	//print_arr(arr, n);
 
 	/* Brute-force algorithm */
 

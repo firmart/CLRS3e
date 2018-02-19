@@ -5,7 +5,7 @@
 \begin{description}
   \descitem{4.1-1} {\itshape What does {\scshape Find-Maximum-Subarray} return when all elements of A are negative?} 
     \begin{ex}
-      L'indice du plus grand \'el\'ement du tableau.
+      L'indice du plus grand élément du tableau.
     \end{ex}
 
   \descitem{4.1-2} {\itshape Write pseudocode for the brute-force method of solving the maximum-subarray problem. Your procedure should run in $\Theta(n^2)$ time.}
@@ -39,7 +39,7 @@
 
     \begin{ex} %TODO:implementation
       \begin{itemize}
-        \item Si la somme finale est n\'egative, on retourne $0$ et le tableau vide ;
+        \item Si la somme finale est négative, on retourne $0$ et le tableau vide ;
         \item Initialiser par $0$ la somme.
       \end{itemize}
     \end{ex}
@@ -92,10 +92,10 @@
       4 & 2\\
     \end{pmatrix}$, on veut calculer le produit matriciel $AB=C$.
     On {\it divise} les matrices $A$ et $B$ en $4$ sous-matrices: \[\begin{array}{ccccc}
-      A_{11} = (1) & A_{12} = (3) & \text{et} & B_{11} = 6& B_{12} = 8\\
-      A_{21} = (7) & A_{22} = (5) &&B_{21} = 4& B_{22} = 2\\
+      A_{11} = 1 & A_{12} = 3 & \text{et} & B_{11} = 6& B_{12} = 8\\
+      A_{21} = 7 & A_{22} = 5 &&B_{21} = 4& B_{22} = 2\\
     \end{array}
-    \] puis on effectue les calcules interm\'ediaires :
+    \] puis on effectue les calcules intermédiaires :
     \begin{alignat*}{7}
     S_1 &= B_{12} - B_{22} &&= 6 &\quad S_6&=B_{11} + B_{22}&&= 8\\
     S_2 &= A_{11} + A_{12} &&= 4 &\quad S_7&=A_{12} - A_{22}&&=-2\\
@@ -163,7 +163,7 @@
         \li \Return (\id{real}, \id{imag})
       \end{codebox}
 
-      Ceci est un cas particulier de l'algortihme de Karatsuba\footnote{voir \href{https://en.wikipedia.org/wiki/Karatsuba_algorithm}{Algorithme de Karatsuba} (Wikipedia)} qui a une complexit\'e en temps $\O(n^{\lg 3})$ pour la multiplication entre deux nombres de $n$ chiffres.
+      Ceci est un cas particulier de l'algortihme de Karatsuba\footnote{voir \href{https://en.wikipedia.org/wiki/Karatsuba_algorithm}{Algorithme de Karatsuba} (Wikipedia)} qui a une complexité en temps $\O(n^{\lg 3})$ pour la multiplication entre deux nombres de $n$ chiffres.
 
     \end{ex}
 
@@ -182,7 +182,7 @@
         &= cn^2 - 2cn + c + n\\
         &\le cn^2 \quad\quad \textrm{avec }c \ge \frac{n}{2n-1}.
       \end{align*}
-      La fonction $\frac{n}{2n-1}$ \'etant d\'ecroissante, on peut choisir $c = 1$ et $n_0 = 1$ tel que la d\'efinition soit v\'erifi\'ee : 
+      La fonction $\frac{n}{2n-1}$ étant décroissante, on peut choisir $c = 1$ et $n_0 = 1$ tel que la définition soit vérifiée : 
       \begin{align*}
         T(n) \in \left\{ f(n) : \forall n \ge 1,~ 0 \le f(n) \le n^2 \right\}  \Longrightarrow T(n) \in \O(n^2).
       \end{align*}
@@ -291,29 +291,29 @@
   
   \descitem{4.5-4} {\itshape Can the master method be applied to the recurrence $T(n) = 4T(n/2) + n^2\lg n$ ? Why or why not? Give an asymptotic upper bound for this recurrence.}
     \begin{exrev} % TODO:Tikz recursive tree + methode de substitution
-      On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser la {\itshape master method}. Pour trouver une borne sup\'erieure asymptotique, on peut d'abord conjecturer avec la m\'ethode d'arbre r\'ecursive puis v\'erifier l'exactitude avec la m\'ethode de substitution.
+      On compare $n^{\lg_2 4} = n^2$ avec $f(n) = n^2\lg n$. Comme on n'a ni $f(n) = \O(n^{\lg_2 4 - \eps})$ ni $f(n) = \Th(n^2)$  ni $f(n) = \Omega(n^{\lg_2 4 + \eps})$, on ne peut utiliser la {\itshape master method}. Pour trouver une borne supérieure asymptotique, on peut d'abord conjecturer avec la méthode d'arbre récursive puis vérifier l'exactitude avec la méthode de substitution.
 
-      \ul{Arbre r\'ecursive} : Supposont que $n = 2^p$ avec $p \in \N$. On a un arbre complet de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par $cn^2\lg n$ et a 4 fils. Chaque niveau $i \in \{0, \ldots, p - 1\}$ a un co\^ut $c4^i\cdot c(\frac{n}{2^i})^2\lg \frac{n}{2^i} = cn^2(p - i)$. Les feuilles sont suppos\'ees d'\^etre \'etiquet\'ees par une constante $\Th(1)$ et il y en a $4^p = n^2$, donc le co\^ut des feuilles est $\Th(n^2)$. On obtient, en sommant les co\^uts de tous les niveaux, une id\'ee sur la borne asymptotique :
+      \ul{Arbre récursive} : Supposont que $n = 2^p$ avec $p \in \N$. On a un arbre complet de hauteur $p$ dans lequel chaque n\oe ud est étiqueté par $cn^2\lg n$ et a 4 fils. Chaque niveau $i \in \{0, \ldots, p - 1\}$ a un co\^ut $c4^i\cdot c(\frac{n}{2^i})^2\lg \frac{n}{2^i} = cn^2(p - i)$. Les feuilles sont supposées d'\^etre étiquetées par une constante $\Th(1)$ et il y en a $4^p = n^2$, donc le co\^ut des feuilles est $\Th(n^2)$. On obtient, en sommant les co\^uts de tous les niveaux, une idée sur la borne asymptotique :
       za\begin{align*}
         \sum_{i=0}^{p-1}cn^2(p-k)+ \Th(n^2) &= cn^2\sum_{i=0}^{p-1}(p-k) + \Th(n^2)\\
         &= cn^2(p^2 - \frac{(p-1)p}{2})\\
         &= \Th(n^2\lg^2 n) = \Th\left( (n\lg n)^2 \right).
       \end{align*}
 
-    \ul{M\'ethode de substitution}:
+    \ul{Méthode de substitution}:
     \end{exrev}
   
   \item[4.5-5 $\star$] {\itshape Consider the regularity condition $af(n/b) \le cf(n)$ for some constant $c < 1$, which is part of case $3$ of the master theorem. Give an example of constant $a\ge 1$ and $b>1$ and a function $f(n)$ that satisfies all the conditions in case 3 of the master theorem except the regularity condition.}
     \begin{ex}
-      Fixons $a = 1, b = 2$ et \'etudions les fonctions de forme $f(n) = a_n\cdot n$ avec $a_n>0$ qui pourraient v\'erifier 
+      Fixons $a = 1, b = 2$ et étudions les fonctions de forme $f(n) = a_n\cdot n$ avec $a_n>0$ qui pourraient vérifier 
       \[\left\{  
           \begin{array}{ll}
             f(n) &= \Omega(n^{\log_2 (1+\eps)}) \quad\textrm{ avec }\eps > 0\\
             f(n/2) &\le cf(n) \quad\textrm{avec } c\ge 1.
           \end{array}
       \right.\]
-      La premi\`ere condition est v\'erifi\'ee si $a_n$ soit born\'ee. Pour que la deuxi\`eme l'est \'egalement, il faut que $a_{n/2} \le 2ca_n$ et que $a_n$ ne soit pas constante. \ul{Intuitivement}, on choisit $a_n = \cos(n)+2$ qui est toujours positive. Par substitution, on obtient l'in\'egalit\'e suivante \[\frac{\cos(n/2)+2}{2(\cos(n)+2} \le c \tag{1}\] Le maximum du premier membre de l'in\'egalit\'e $(1)$ est donn\'e par \href{https://www.wolframalpha.com/input/?i=max+(cos(n%2F2)%2B2)%2F(2(cos(n)%2B2)}{Wolfram Alpha} 
-et vaut approximativement $1.0303$. Donc on a $1.0303 \le c$, ce qui v\'erifie la deuxi\`eme condition. Ainsi, on ne peut appliquer le {\it master theorem} pour trouver une borne asymptotique inf\'erieure.
+      La première condition est vérifiée si $a_n$ soit bornée. Pour que la deuxième l'est également, il faut que $a_{n/2} \le 2ca_n$ et que $a_n$ ne soit pas constante. \ul{Intuitivement}, on choisit $a_n = \cos(n)+2$ qui est toujours positive. Par substitution, on obtient l'inégalité suivante \[\frac{\cos(n/2)+2}{2(\cos(n)+2} \le c \tag{1}\] Le maximum du premier membre de l'inégalité $(1)$ est donné par \href{https://www.wolframalpha.com/input/?i=max+(cos(n%2F2)%2B2)%2F(2(cos(n)%2B2)}{Wolfram Alpha} 
+et vaut approximativement $1.0303$. Donc on a $1.0303 \le c$, ce qui vérifie la deuxième condition. Ainsi, on ne peut appliquer le {\it master theorem} pour trouver une borne asymptotique inférieure.
     \end{ex}
 \end{description}
 

@@ -7,7 +7,7 @@
 
 /**
  * \file llist.h
- * \brief Singly linked list definition and basic operations
+ * \brief Circular singly linked list definition and basic operations
  * \author Firmin MARTIN 
  * \version 0.1
  * \date 03/01/2018
@@ -24,6 +24,7 @@ typedef struct llist_t {
     int count;      /**< count element amount*/
 } llist_t;
 
+lnode_t* llist_head(llist_t* l);
 llist_t*  llist_create(size_t width);
 void  llist_destruct(llist_t* l);
 lnode_t*  llist_insert(llist_t* l, int n, void* e);

@@ -36,7 +36,7 @@ int recFindMaxSubarray(int* arr, int* low, int* high){
 	rightSum = recFindMaxSubarray(arr, &rightLow, &rightHigh);
 	//printf("Right : [%d, %d], rightSum = %d\n", rightLow + 1, rightHigh + 1, rightSum);
 	crossSum = findMaxCrossingSubarray(arr, *low, mid, *high, &crossLow, &crossHigh);
-	printf("Cross : [%d, %d], crossSum = %d\n", crossLow + 1, crossHigh + 1, crossSum);
+	//printf("Cross : [%d, %d], crossSum = %d\n", crossLow + 1, crossHigh + 1, crossSum);
 	if (leftSum >= rightSum && leftSum >= crossSum){
 		*low = 	leftLow;
 		*high = leftHigh;

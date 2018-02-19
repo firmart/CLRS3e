@@ -68,7 +68,7 @@ void llist_delete(llist_t* l, int n) {
 }
 
 /*
- * Insert in the front of a given \e node a node \e x
+ * Insert in the front of a given \p node a node \p x
  * \param node the node to prepend
  * \param x the node to insert 
  */

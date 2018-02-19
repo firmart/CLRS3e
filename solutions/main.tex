@@ -68,6 +68,7 @@
 \newlist{Al}{enumerate}{1}
 \setlist[Al]{label={\bfseries\alph*.}}
 
+\usepackage{scrextend}
 \usepackage{adjustbox} % adjust objects 
 %\usepackage{imakeidx} % for index
 %\usepackage[xindy,nopostdot,acronym]{glossaries}
@@ -90,6 +91,7 @@
 %%%%% Table %%%%%
 
 \usepackage{array}
+\usepackage{longtable}
 
 %%% Diagrams %%%
 
@@ -190,7 +192,7 @@
 
   \newenvironment{ex}{\refstepcounter{ex}\paragraph{\textcolor{myblue}{Solution :}}\mbox{}}{\mbox{}\hfill$\blacksquare$}
   \newenvironment{exrev}{\refstepcounter{exrev}\paragraph{\textcolor{red}{Solution :}}\mbox{}}{\mbox{}\hfill$\blacksquare$}
-  \newenvironment{pb}{\refstepcounter{pb}\paragraph{Solution :}\mbox{}}{\mbox{}\hfill$\blacksquare$}
+  \newenvironment{pb}{\refstepcounter{pb}\paragraph{\textcolor{myblue}{Solution :}}}{\mbox{}\hfill$\blacksquare$}
   \newenvironment{pbrev}{\refstepcounter{pbrev}\paragraph{\textcolor{red}{Solution :}}\mbox{}}{\mbox{}\hfill$\blacksquare$}
 
 %%% Maths new command %%%

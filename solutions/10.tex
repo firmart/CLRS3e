@@ -131,7 +131,7 @@
       \li $\attrib{Q}{head} \gets \const{Nil}$ \End
     \li \Return \id{e}
 \end{codebox}
-    \item \footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Queue/}.}
+    \item \footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Queue/Array_queue}.}
     À la place de $\attrib{Q}{head}$ et $\attrib{Q}{tail}$, on utilise $\attrib{Q}{front}$ et $\attrib{Q}{count}$. $\attrib{Q}{front}$ joue le même rôle que $\attrib{Q}{tail}$. L'emplacement de $\attrib{Q}{head}$ peut se déduire à partir de l'identité :
         \[\attrib{Q}{head} + \attrib{Q}{count}\equiv \attrib{Q}{tail}\pmod{\attrib{Q}{length}}.\]
     Dans ce cas, la file est vide si $\attrib{Q}{count} = 0$ et pleine si $\attrib{Q}{count} = \attrib{Q}{length}$. 
@@ -156,7 +156,7 @@
 \end{ex}
 \descitem{10.1-5} \textit{Whereas a stack allows insertion and deletion of elements at only one end, and a queue allows insertion at one end and deletion at the other end, a \textbf{deque} (double-ended queue) allows insertion and deletion at both ends. Write four $O(1)$-time procedures to insert elements into and delete elements from both ends of a deque implemented by an array.}
 \begin{ex}
-   On reprend les algorithmes \textsc{Enqueue-With-Counter} et \textsc{Dequeue-With-Counter} et les attribues définies. Les algorithmes suivantes complètent une file à une \textit{deque}.\footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Deque/}.}
+   On reprend les algorithmes \textsc{Enqueue-With-Counter} et \textsc{Dequeue-With-Counter} et les attribues définies. Les algorithmes suivantes complètent une file à une \textit{deque}.\footnote{L'implémentation des algorithmes suivantes se trouve dans le dossier \pathx{src/CH10_Elementary_Data_Structures/Queue/Array_deque/}.}
 \begin{codebox}
 \Procname{\algo{Enqueue-At-Other-End}$(\id{Q}, \id{e})$}
     \li \If $\attrib{Q}{count}\isequal\attrib{Q}{length}$ \Then
@@ -184,8 +184,11 @@
 \label{sub:linked_lists}
 
 \begin{description}
-    \descitem{10.2-1} \textit{Can you implement the dynamic-set operation \proc{Insert} on a singly linked list in $O(1)$ time ? How about \proc{Delete} ?}
+    \descitem{10.2-1} \textit{Can you implement the dynamic set operation \proc{Insert} on a singly linked list in $O(1)$ time ? How about \proc{Delete} ?}
     \descitem{10.2-2} \textit{Implement a stack using a singly linked list $L$. The operations \proc{Push} and \proc{Pop} should still take $O(1)$ time.}
+    \begin{exrev}
+      La seule possibilité d'implémenter une pile à partir d'une liste simplement chaînée tout en laissant les primitives \proc{Pop} et \proc{Push} en temps constant est de faire correspondre \attrib{S}{top} à \attrib{L}{head}. En effet, l'insertion et la suppression d'élément en tête dans une liste simplement chaînée se fait en $O(1)$. Si la liste est doublement circulaire, on peut faire correspondre \attrib{S}{top} au dernier élément de la liste (ce qui simplifie l'implémentation), avec les primitives en temps constant. 
+    \end{exrev}
     \descitem{10.2-3} \textit{Implement a queue by a singly linked list $L$. The operations \proc{Enqueue} and \proc{Dequeue} should still take $O(1)$ time.}
     \descitem{10.2-4} \textit{As written, each loop iteration in the \proc{List-Search'} procedure requires two tests: one for $x \neq \attrib {L}{nil}$ and one for $\attrib{x}{key} \neq k$. Show how to eliminate the test for $x \neq \attrib{L}{nil}$ in each iteration.}
     \descitem{10.2-5} \textit{Implement the dictionary operations \proc{Insert}, \proc{Delete}, and \proc{Search} using singly linked, circular lists. What are the running times of your procedures?}
@@ -193,3 +196,46 @@
     \descitem{10.2-7} \textit{}
     \descitem{10.2-8} \textit{}
 \end{description}
+
+\subsection{Implementing pointers and objects}
+\label{sub:implementing_pointers_and_objects}
+
+\subsection{Representing rooted trees}
+\label{sub:representing_rooted_trees}
+
+\subsection*{Problems}
+\addcontentsline{toc}{subsection}{Problems}
+
+\begin{description}
+    \descitem{10-1} \textit{\textbf{Comparisons among lists}}
+
+    \textit{For each of the four types of lists in the following table, what is the asymptotic wors-case running time for each dynamic-set operation listed?} 
+
+\begin{pb}
+  
+    On suppose que les listes triés sont triés de manière croissante et que les listes ne sont pas circulaires. $x$ représente le \textit{pointer} qui pointe vers un nœud de la liste et $k$ sa clé. 
+
+\begin{longtable}[c]{c|c|c|c|c|}
+ & \begin{tabular}[c]{@{}l@{}}unsorted,\\ singly\\  linked\end{tabular} & \begin{tabular}[c]{@{}l@{}}sorted, \\ singly\\  linked\end{tabular} & \begin{tabular}[c]{@{}l@{}}unsorted,\\ doubly\\ linked\end{tabular} & \begin{tabular}[c]{@{}l@{}}sorted,\\ doubly\\ linked\end{tabular} \\ \hline
+\endfirsthead
+%
+\endhead
+%
+\multicolumn{1}{l|}{\proc{Search}(L,k)} &$O(n)$  &$O(n)$  &$O(n)$  &$O(n)$  \\ \hline
+\multicolumn{1}{l|}{\proc{Insert}(L,x)} &$O(1)$   &$O(n)$  &$O(1)$  &$O(n)$  \\ \hline
+\multicolumn{1}{l|}{\proc{Delete}(L,x)} &$O(n)$  &$O(n)$  &$O(1)$ &$O(1)$   \\ \hline
+\multicolumn{1}{l|}{\proc{Successor}(L,x)} &$O(1)$  &$O(1)$  &$O(1)$  &$O(1)$  \\ \hline
+\multicolumn{1}{l|}{\proc{Predecessor}(L,x)} &$O(n)$  &$O(n)$  &$O(1)$  &$O(1)$  \\ \hline
+\multicolumn{1}{l|}{\proc{Minimum}(L)} &$O(n)$  &$O(1)$  &$O(n)$  &$O(1)$  \\ \hline
+\multicolumn{1}{l|}{\proc{Maximum}(L)} &$O(n)$  &$O(n)$  &$O(n)$  &$O(n)$  \\ \hline
+\caption*{}
+\end{longtable}
+%TODO:add improve solution for min/max (by add a field) and separe doubly-linked list from XOR list
+%TODO:clarifier le sens de successor/predecessor, pointer ou valeur ?
+\end{pb}
+\end{description}
+
+
+
+
+

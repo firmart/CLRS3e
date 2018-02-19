@@ -89,7 +89,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
     $[1 \twodots i-1]$ est vide, donc ne contient pas $v$.
   \item Conservation
 
-    Pour tout $1\le i\le \attrib{A}{length}$, pour la boucle $i$, on a $[1 \twodots i-1]$ ne contenant pas $v$. Le corps de la boucle est execut\'e si et seulement si $A[i] \ne v$ et que $i \le \attrib{A}{length}$. Dans ce cas, avant l'it\'eration $i+1$, le sous-tableau $[1 \twodots i]$ ne contient pas $v$.
+    Pour tout $1\le i\le \attrib{A}{length}$, pour la boucle $i$, on a $[1 \twodots i-1]$ ne contenant pas $v$. Le corps de la boucle est executé si et seulement si $A[i] \ne v$ et que $i \le \attrib{A}{length}$. Dans ce cas, avant l'itération $i+1$, le sous-tableau $[1 \twodots i]$ ne contient pas $v$.
   \item Terminaison
 
     Il y a deux cas de terminaison :
@@ -104,9 +104,9 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 \descitem{2.1-4} {\itshape Consider the problem of adding two $n$-bit binary integers, stored in two $n$-element arrays $A$ and $B$. The sum of the two integers should be stored in binary form in an $(n+1)$-element array $C$.  State the problem formally and write pseudocode for adding the two integers.}
 
   \begin{ex}\\
-    {\bfseries Input:} Deux nombres binaires $a$ et $b$ sous forme de vecteur $A = \langle a_1, \ldots, a_n \rangle$ et $B = \langle b_1, \ldots, b_n \rangle$ tel que pour tout $i \in \llbracket 1,n \rrbracket, a_i, b_i \in \{0,1\}$. Avec l'indice $i=1$ d\'esignant le bit le plus significant.
+    {\bfseries Input:} Deux nombres binaires $a$ et $b$ sous forme de vecteur $A = \langle a_1, \ldots, a_n \rangle$ et $B = \langle b_1, \ldots, b_n \rangle$ tel que pour tout $i \in \llbracket 1,n \rrbracket, a_i, b_i \in \{0,1\}$. Avec l'indice $i=1$ désignant le bit le plus significant.
 
-    {\bfseries Output:} Le vecteur $C = \langle c_1, \ldots, c_{n+1} \rangle$ qui repr\'esente $c = a+b$ en binaire.
+    {\bfseries Output:} Le vecteur $C = \langle c_1, \ldots, c_{n+1} \rangle$ qui représente $c = a+b$ en binaire.
     
     \begin{codebox}
     \Procname{ \algo{Add-Binary-Integer}$(A, B)$}
@@ -144,14 +144,14 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
     \begin{itemize}
       \item Invariant de boucle : 
 
-        Le tableau $[1 \twodots i-1]$ est tri\'e avant la $i$\`eme it\'eration et tous les \'el\'ements dans $[i \twodots n]$ sont sup\'erieurs \`a ceux dans $[1\twodots i-1]$.
+        Le tableau $[1 \twodots i-1]$ est trié avant la $i$ème itération et tous les éléments dans $[i \twodots n]$ sont supérieurs à ceux dans $[1\twodots i-1]$.
 
-      \item \`A la $n-1$ it\'eration, le tableau $[1\twodots n-2]$ est tri\'e, il ne reste plus qu'\`a comparer $A[n-1]$ et $A[n]$.
+      \item \`A la $n-1$ itération, le tableau $[1\twodots n-2]$ est trié, il ne reste plus qu'à comparer $A[n-1]$ et $A[n]$.
 
-     \item Temps d'ex\'ecution :
+     \item Temps d'exécution :
         \begin{itemize}
-          \item[$\bullet$] Cas optimal : $A$ d\'ej\`a tri\'e, $\Theta(n^2)$ ;
-          \item[$\bullet$] Cas le plus d\'efavorable : $A$ tri\'e de fa\c{c}on d\'ecroissante, $\Theta(n^2)$.
+          \item[$\bullet$] Cas optimal : $A$ déjà trié, $\Theta(n^2)$ ;
+          \item[$\bullet$] Cas le plus défavorable : $A$ trié de fa\c{c}on décroissante, $\Theta(n^2)$.
         \end{itemize}
 
     \end{itemize}
@@ -163,7 +163,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
   \begin{ex}
     \begin{itemize}
       \item Cas moyen : $\frac{1}{n}\sum_{i=1}^ni = \frac{n+1}{2}$ ;
-      \item Cas le plus d\'efavorable : $n+1$.
+      \item Cas le plus défavorable : $n+1$.
     \end{itemize}
     Donc $\Theta(n)$ dans les deux cas.
   \end{ex}
@@ -171,7 +171,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
 \descitem{2.2-4} {\itshape How can we modify almost any algorithm to have a good best-case running time?}
 
   \begin{ex}
-    Tester au d\'ebut de l'algorithme la nature de l'entr\'ee, si celle-ci v\'erifie une certaine condition, retourner un r\'esultat calcul\'e pr\'ealablement. 
+    Tester au début de l'algorithme la nature de l'entrée, si celle-ci vérifie une certaine condition, retourner un résultat calculé préalablement. 
   \end{ex}
 
 \end{description}
@@ -189,7 +189,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
         \caption{Tri fusion sur le tableau $A =\langle 3, 41, 52, 26, 38, 57, 9, 49\rangle$.\\
           \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=blue!20, line width=3pt] (0,0) -- (0.4,0);}} éléments de droite
           \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=red!20, line width=3pt] (0,0) -- (0.4,0); }} éléments de gauche
-          \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=merge, line width=3pt] (0,0) -- (0.4,0);  }} éléments fusionnés (ordonné).}
+          \raisebox{2.5pt}{\protect\tikz{\protect\draw[color=merge, line width=3pt] (0,0) -- (0.4,0);  }} éléments fusionnés (ordonnés).}
       \end{figure}
       
     \end{ex}
@@ -231,7 +231,7 @@ Write pseudocode for {\bfseries linear search}, which scans through the sequence
       Soit $n = 2^p$, avec $p \in \N^*$.
       \begin{itemize}
         \item \ul{Initialisation} : $T(2) = 2\lg 2 = 2$ est vraie.
-        \item \ul{H\'er\'edit\'e} : Soit $k < p$ et supposons que $T(2^k) = 2^k\lg 2^k = 2^kk$.
+        \item \ul{Hérédité} : Soit $k < p$ et supposons que $T(2^k) = 2^k\lg 2^k = 2^kk$.
 
           Alors $T(2^{k+1}) = 2T(2^k)+2^{k+1} = 2^{k+1}(k+1)$.
         \item \ul{Conclusion} : Pour tout $p \in \N^*$, on a bien $T(2^p) = 2^p p$.
@@ -266,14 +266,14 @@ insertion sort.}
       \li \Return \const{nil} \End
     \end{codebox}
 
-    Calculons le temps d'ex\'ecution au cas le plus d\'efavorable. On a :
+    Calculons le temps d'exécution au cas le plus défavorable. On a :
     \[T(n) = \left\{ 
       \begin{array}{ll}
         \Theta(1) & \text{if } n = 1\\
         T(n/2) + \Theta(1) & \text{otherwise}
       \end{array}
     \right..\]
-    Supposons que $n = 2^p$, alors par la m\'ethode d'arbre r\'ecursive, on a un arbre d\'eg\'en\'er\'e de hauteur $p$ dans lequel chaque n\oe ud est \'etiquet\'e par une constante $c$. Il suffit donc de calculer 
+    Supposons que $n = 2^p$, alors par la méthode d'arbre récursive, on a un arbre dégénéré de hauteur $p$ dans lequel chaque n\oe ud est étiqueté par une constante $c$. Il suffit donc de calculer 
     \begin{align*}
       \sum_{i=0}^{p}c &= (p+1)c\\
      &= (\lg n + 1)c\\
@@ -284,19 +284,28 @@ insertion sort.}
 \descitem{2.3-6} {\itshape Observe that the {\bfseries while} loop of lines $5$–$7$ of the {\scshape Insertion-Sort} procedure in Section 2.1 uses a linear search to scan (backward) through the sorted subarray $A[1 \twodots j-1]$. Can we use a binary search (see Exercise 2.3-5) instead to improve the overall worst-case running time of insertion sort to $\Theta(n \lg n)$?}
 
   \begin{ex}
-    Non. Dans la boucle \textbf{tant que}, on effectue deux t\^aches :
+    Non. Dans la boucle \textbf{tant que}, on effectue deux tâches :
     \begin{enumerate}
-      \item la recherche lin\'eaire de l'emplacement auquel on ins\`ere l'\'el\'ement : $\Theta (n)$ ;
-      \item le d\'ecalage de tous les \'el\'ements apr\`es cet emplacement : $\Theta (n)$.
+      \item la recherche linéaire de l'emplacement auquel on insère l'élément : $\Theta (n)$ ;
+      \item le décalage de tous les éléments après cet emplacement : $\Theta (n)$.
     \end{enumerate}
-    Remplacer la recherche lin\'eaire par la recherche dichotomique am\'eliore la premi\`ere t\^ache en temps logarithmique. N\'eanmoins, le d\'ecalage toujours en $\Theta(n)$, cause un temps quadratique \`a l'algorithme.
+    Remplacer la recherche linéaire par la recherche dichotomique améliore la première tâche en temps logarithmique. Néanmoins, le décalage toujours en $\Theta(n)$, cause un temps quadratique à l'algorithme.
   \end{ex}
 
 \item[2.3-7 $\star$] {\itshape Describe a $\Theta (n \lg n)$-time algorithm that, given a set $S$ of $n$ integers and another integer $x$, determines whether or not there exist two elements in $S$ whose sum is exactly $x$.}
 
-  \begin{exrev}
-    
-  \end{exrev}
+\begin{ex}
+    La méthode naïve (\textit{brute force}) est de $\Theta(n^2)$. En voyant $\lg n$, on pense aux méthodes \textit{divide and conquer}. On peut trier $S$ en $\Theta(n\lg n)$ \textit{via} un tri fusion et chercher un élément dans l'ensemble trié en $\Theta(\lg n)$  à l'aide de la recherche dichotomique.
+\begin{codebox}
+\Procname{\algo{Sum-Search}$(S, x)$}
+    \li $\proc{Merge-Sort}(S)$
+    \li \For $i \gets 1$ \To $\attrib{S}{size}$ \Do
+      \li \If $\proc{Binary-Search}(S, x - S[i]) \neq \const{nil}$ \Then
+        \li \Return \const{true} \End
+    \End
+    \li  \Return \const{false} 
+\end{codebox}
+\end{ex}
 
 \end{description}
 
@@ -307,7 +316,7 @@ insertion sort.}
 
     {\itshape Although merge sort runs in $\Theta(n \lg n)$ worst-case time and insertion sort runs in $\Theta(n^2)$ worst-case time, the constant factors in insertion sort can make it faster in practice for small problem sizes on many machines. Thus, it makes sense to {\bfseries coarsen} the leaves of the recursion by using insertion sort within merge sort when subproblems become sufficiently small. Consider a modification to merge sort in which $n=k$ sublists of length $k$ are sorted using insertion sort and then merged using the standard merging mechanism, where $k$ is a value to be determined.
       \begin{Al}
-        \item Show that insertion sort can sort the $n=k$ sublists, each of length $k$, in $\Theta (nk)$  worst-case time.
+        \item Show that insertion sort can sort the $n/k$ sublists, each of length $k$, in $\Theta (nk)$  worst-case time.
         \item Show how to merge the sublists in $\Theta (n\lg (n/k))$ worst-case time.
         \item Given that the modified algorithm runs in $\Theta(nk + n\lg (n/k))$ worst-case time, what is the largest value of $k$ as a function of $n$ for which the modified algorithm has the same running time as standard merge sort, in terms of $\Theta$-notation?
         \item How should we choose k in practice?
@@ -315,7 +324,9 @@ insertion sort.}
     }
 
     \begin{pbrev}
-      
+        \begin{Al} 
+            \item $n/k \cdot \Theta(k^2)  = \Theta(nk)$.
+        \end{Al}
     \end{pbrev}
 
   \descitem{2-2} {\bfseries \itshape Correctness of bubblesort}
