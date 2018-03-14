@@ -1,0 +1,32 @@
+\documentclass[border=2mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,petri,matrix}
+\usetikzlibrary{decorations.pathmorphing}
+
+\begin{document}
+\begin{tikzpicture}[
+font=\ttfamily, array/.style={
+    matrix of nodes, 
+    nodes={draw=black, minimum size=7mm, fill=white, anchor=center},
+    column sep=-\pgflinewidth, 
+    row sep=5.5mm, 
+    nodes in empty cells,
+    row 1/.style={ nodes={draw=black, fill=none, minimum size=7mm}},
+    row 1 column 1/.style={nodes={draw}},
+},
+]
+
+\matrix[array] (array) {
+   0  &  0  &  0  &  0  &  1  & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1\\
+  |[fill=gray!60]|0 & |[fill=gray!60]|0 &  |[fill=gray!60]|0 & 1 \\
+};
+
+\draw (array-1-1) to (array-2-1);
+\draw (array-1-2) to (array-2-2);
+\draw (array-1-3) to (array-2-3);
+\draw[decorate, decoration={snake,amplitude=1mm,segment length=2mm,post length=0mm}] (array-1-4) to (array-2-4);
+%\draw[-latex] (S) to (array-2-1);
+
+\end{tikzpicture}
+\end{document}
+

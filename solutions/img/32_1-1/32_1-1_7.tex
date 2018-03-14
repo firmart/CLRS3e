@@ -1,0 +1,28 @@
+\documentclass[border=2mm]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes,snakes,automata,backgrounds,petri,matrix}
+
+\begin{document}
+\begin{tikzpicture}[
+font=\ttfamily, array/.style={
+    matrix of nodes, 
+    nodes={draw=black, minimum size=7mm, fill=white, anchor=center},
+    column sep=-\pgflinewidth, 
+    row sep=5.5mm, 
+    row 1/.style={ nodes={draw=black, fill=none, minimum size=7mm}},
+    row 1 column 1/.style={nodes={draw}},
+},
+]
+
+\matrix[array] (array) {
+   0  &  0  &  0  &  0  &  1  & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1\\
+  &&&&&& |[fill=gray!60]|0 & |[fill=gray!60]|0 &  0 & 1 \\
+};
+
+\draw (array-1-7) to (array-2-7);
+\draw (array-1-8) to (array-2-8);
+\draw[decorate, decoration={snake,amplitude=1mm,segment length=2mm,post length=0mm}] (array-1-9) to (array-2-9);
+
+\end{tikzpicture}
+\end{document}
+
