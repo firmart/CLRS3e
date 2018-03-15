@@ -39,6 +39,8 @@
 
 %\usepackage{minted}
 \usepackage{clrscode3e}
+\renewcommand{\gets}{\leftarrow}
+\newcommand{\Break}{\textbf{break}}
 
 % ---  make codebox referable  ---
 
@@ -197,9 +199,17 @@
 
 %%% Maths new command %%%
   
+\makeatletter
+\def\smallunderbrace#1{\mathop{\vtop{\m@th\ialign{##\crcr
+   $\hfil\displaystyle{#1}\hfil$\crcr
+   \noalign{\kern3\p@\nointerlineskip}%
+   \tiny\upbracefill\crcr\noalign{\kern3\p@}}}}\limits}
+\makeatother
 \newcommand*\diff{\mathop{}\!\mathrm{d}}
 \newcommand*\Diff[1]{\mathop{}\!\mathrm{d^#1}}
 \newcommand{\N}{\mathbb{N}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\T}{\mathsf{T}}
 \renewcommand{\P}{\mathbb{P}}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\Th}{\Theta}
@@ -278,6 +288,7 @@
 \input{A}
 \input{B}
 \input{C}
+\input{D}
 
 % \setglossarystyle{mylist}
 

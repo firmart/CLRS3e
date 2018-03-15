@@ -1,0 +1,34 @@
+\section{Matrices}
+
+\subsection{Matrices and matrix operations}
+
+\begin{description}
+  \descitem{D.1-1} \textit{Show that if $A$ and $B$ are symmetric $n \times n$ matrices, then so are $A + B$ and $A - B$.}
+    \begin{ex}
+        Il est clair que $A \pm B = A^\T \pm B^\T = (A \pm B)^\T$.
+    \end{ex}
+  \descitem{D.1-2} \textit{Prove that $(AB)^\T$ and that $A^\T A$ is always a symmetric matrix.}
+    \begin{ex}
+    Supposons que $A$ et $B$ sont respectivement de type $(n, m)$ et $(m,p)$. On a Alors
+        \begin{align*}
+          (AB)^\T_{ij} &= \left( \sum_{k=1}^m a_{jk}b_{ki} \right)_{\substack{i\le p\\j\le n}}\\
+          &=\left( \sum_{k=1}^m \hat{b}_{ik}\hat{a}_{kj} \right)_{\substack{i\le p\\j\le n}}\\
+          &= B^\T A^\T
+        \end{align*}
+    où $B^\T = (\hat{b}_{ij})$ et $A^\T = (\hat{a}_{ij})$. Ainsi $(A^\T A)^\T = A^\T A$, donc $A^\T A$ est symétrique.
+
+    On peut aussi voir la matrice $A_{nm}$ comme $m$ vecteurs colonne $(a_i)_{i\le m}$ concaténés. Le produit $C := A^\T A$ n'est rien d'autre que le produit scalaire : $\forall i, j \in \llbracket 1, n \rrbracket, c_{ij} = \langle a_i, a_j \rangle$. Le produit scalaire est une forme bilinéaire définie positif \textit{symétrique}.
+    \end{ex}
+  \descitem{D.1-3} \textit{Prove that the product of two lower-triangular matrices is lower-triangular.}
+  \begin{ex}
+    Soit $A, B$ deux matrices triangulaires inférieurs et posons $C = AB$. Montrons que pour tout $i < j$, $c_{ij} = 0$ :
+        \begin{align*}
+          c_{ij} &= \sum_{k=1}^n a_{ik}b_{kj}\\
+          &= \sum_{k=1}^{j-1} a_{ik}b_{kj} + \sum_{k=j}^{n} a_{ik}b_{kj}\\
+          &= 0.
+        \end{align*}
+  \end{ex}
+  \descitem{D.1-4} \textit{}
+\end{description}
+
+\subsection{Basic matrix propreties}
