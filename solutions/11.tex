@@ -16,11 +16,11 @@
 
 \begin{ex}
 
-Supposons qu'on travaille sur des entiers, alors les procédures suivantes sont $O(1)$ en temps. La procédure \proc{Bit-Vector-Search} retourne \const{true} si le bit $k$ vaut $1$ et réciproquement.
+Supposons qu'on travaille sur des entiers, alors les procédures suivantes sont $O(1)$ en temps. La procédure \proc{Bit-Vector-Search} retourne \const{true} si le bit $k$ vaut $1$ et $\const{false}$ réciproquement.
 
 \begin{codebox}
 \Procname{\algo{Bit-Vector-Search}$(\id{b}, \id{k})$}
-   \li \If $b[k] == 1$
+   \li \Return $b[k] == 1$
 \end{codebox}
 \begin{codebox}
 \Procname{\algo{Bit-Vector-Insert}$(\id{b}, \id{x})$}
